@@ -28,8 +28,8 @@
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
     ],
-    "total_params": 20560644,
-    "param_str": "20.56M"
+    "total_params": null,
+    "param_str": "N/A (onnx not installed)"
   },
   "config": {
     "name": "gnConv + P2 (3-dec)",
@@ -40,61 +40,57 @@
     "description": "gnConv + P2 layer with 3 decoder layers (correct)"
   },
   "metrics": {
-    "mAP_50_95": 0.2271,
-    "mAP_50": 0.372,
-    "mAP_75": 0.2356,
-    "mAP_small": 0.1484,
-    "mAP_medium": 0.3147,
-    "mAP_large": 0.4396,
-    "AR_1": 0.1021,
-    "AR_10": 0.2774,
-    "AR_100": 0.3722,
-    "AR_small": 0.2851,
-    "AR_medium": 0.4782,
-    "AR_large": 0.6031,
+    "mAP_50_95": 0.2513,
+    "mAP_50": 0.4106,
+    "mAP_75": 0.2606,
+    "mAP_small": 0.1639,
+    "mAP_medium": 0.3486,
+    "mAP_large": 0.4883,
+    "AR_1": 0.1122,
+    "AR_10": 0.3039,
+    "AR_100": 0.4081,
+    "AR_small": 0.3137,
+    "AR_medium": 0.5231,
+    "AR_large": 0.6667,
     "per_class_ap": {
       "pedestrian": {
-        "AP_50": 0.0243,
-        "AP_50_95": 0.009
+        "AP_50": 0.4996,
+        "AP_50_95": 0.2308
       },
       "people": {
-        "AP_50": 0.4995,
-        "AP_50_95": 0.2309
+        "AP_50": 0.4238,
+        "AP_50_95": 0.1696
       },
       "bicycle": {
-        "AP_50": 0.4238,
-        "AP_50_95": 0.1697
-      },
-      "car": {
         "AP_50": 0.1279,
         "AP_50_95": 0.0586
       },
-      "van": {
+      "car": {
         "AP_50": 0.8301,
-        "AP_50_95": 0.5752
+        "AP_50_95": 0.5753
+      },
+      "van": {
+        "AP_50": 0.5087,
+        "AP_50_95": 0.3505
       },
       "truck": {
-        "AP_50": 0.5088,
-        "AP_50_95": 0.3506
-      },
-      "tricycle": {
         "AP_50": 0.339,
         "AP_50_95": 0.2258
       },
-      "awning-tricycle": {
+      "tricycle": {
         "AP_50": 0.2665,
-        "AP_50_95": 0.1507
+        "AP_50_95": 0.1506
+      },
+      "awning-tricycle": {
+        "AP_50": 0.1633,
+        "AP_50_95": 0.1012
       },
       "bus": {
-        "AP_50": 0.1634,
-        "AP_50_95": 0.1013
-      },
-      "motor": {
-        "AP_50": 0.5362,
-        "AP_50_95": 0.3988
+        "AP_50": 0.5363,
+        "AP_50_95": 0.3993
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 47.63
+  "inference_time_s": 65.37
 }

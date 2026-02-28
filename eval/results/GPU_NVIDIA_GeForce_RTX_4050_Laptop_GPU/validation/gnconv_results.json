@@ -40,61 +40,57 @@
     "description": "Global/gated convolutions (HorNet-style)"
   },
   "metrics": {
-    "mAP_50_95": 0.2105,
-    "mAP_50": 0.3516,
-    "mAP_75": 0.2158,
-    "mAP_small": 0.1276,
-    "mAP_medium": 0.2979,
-    "mAP_large": 0.4288,
-    "AR_1": 0.0983,
-    "AR_10": 0.2643,
-    "AR_100": 0.3556,
-    "AR_small": 0.2598,
-    "AR_medium": 0.4756,
-    "AR_large": 0.609,
+    "mAP_50_95": 0.2336,
+    "mAP_50": 0.3886,
+    "mAP_75": 0.2401,
+    "mAP_small": 0.1415,
+    "mAP_medium": 0.3306,
+    "mAP_large": 0.4764,
+    "AR_1": 0.1082,
+    "AR_10": 0.2902,
+    "AR_100": 0.3908,
+    "AR_small": 0.2856,
+    "AR_medium": 0.5223,
+    "AR_large": 0.6758,
     "per_class_ap": {
       "pedestrian": {
-        "AP_50": 0.0222,
-        "AP_50_95": 0.0042
-      },
-      "people": {
         "AP_50": 0.4471,
         "AP_50_95": 0.2005
       },
-      "bicycle": {
-        "AP_50": 0.3884,
-        "AP_50_95": 0.1501
+      "people": {
+        "AP_50": 0.3885,
+        "AP_50_95": 0.1502
       },
-      "car": {
-        "AP_50": 0.1166,
+      "bicycle": {
+        "AP_50": 0.1165,
         "AP_50_95": 0.0492
       },
-      "van": {
+      "car": {
         "AP_50": 0.8082,
         "AP_50_95": 0.5589
       },
-      "truck": {
+      "van": {
         "AP_50": 0.4692,
         "AP_50_95": 0.3224
       },
-      "tricycle": {
-        "AP_50": 0.3298,
+      "truck": {
+        "AP_50": 0.3299,
         "AP_50_95": 0.2164
       },
-      "awning-tricycle": {
-        "AP_50": 0.2478,
-        "AP_50_95": 0.133
+      "tricycle": {
+        "AP_50": 0.247,
+        "AP_50_95": 0.1329
       },
-      "bus": {
-        "AP_50": 0.1481,
+      "awning-tricycle": {
+        "AP_50": 0.1482,
         "AP_50_95": 0.0917
       },
-      "motor": {
-        "AP_50": 0.5388,
-        "AP_50_95": 0.3787
+      "bus": {
+        "AP_50": 0.5425,
+        "AP_50_95": 0.3805
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 20.22
+  "inference_time_s": 23.32
 }

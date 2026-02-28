@@ -40,61 +40,57 @@
     "description": "Integrated gnConv + P2 design"
   },
   "metrics": {
-    "mAP_50_95": 0.2376,
-    "mAP_50": 0.3887,
-    "mAP_75": 0.2459,
-    "mAP_small": 0.1535,
-    "mAP_medium": 0.3372,
-    "mAP_large": 0.4407,
-    "AR_1": 0.1048,
-    "AR_10": 0.2894,
-    "AR_100": 0.3832,
-    "AR_small": 0.2905,
-    "AR_medium": 0.5022,
-    "AR_large": 0.5999,
+    "mAP_50_95": 0.2634,
+    "mAP_50": 0.4292,
+    "mAP_75": 0.2731,
+    "mAP_small": 0.17,
+    "mAP_medium": 0.3737,
+    "mAP_large": 0.4883,
+    "AR_1": 0.1149,
+    "AR_10": 0.3163,
+    "AR_100": 0.4195,
+    "AR_small": 0.3183,
+    "AR_medium": 0.5494,
+    "AR_large": 0.6635,
     "per_class_ap": {
       "pedestrian": {
-        "AP_50": 0.0241,
-        "AP_50_95": 0.0058
-      },
-      "people": {
         "AP_50": 0.5112,
         "AP_50_95": 0.2385
       },
-      "bicycle": {
+      "people": {
         "AP_50": 0.4269,
         "AP_50_95": 0.1731
       },
-      "car": {
+      "bicycle": {
         "AP_50": 0.1507,
         "AP_50_95": 0.0678
       },
-      "van": {
+      "car": {
         "AP_50": 0.8386,
         "AP_50_95": 0.582
       },
-      "truck": {
+      "van": {
         "AP_50": 0.5167,
         "AP_50_95": 0.3631
       },
-      "tricycle": {
-        "AP_50": 0.3581,
-        "AP_50_95": 0.2405
+      "truck": {
+        "AP_50": 0.358,
+        "AP_50_95": 0.2404
       },
-      "awning-tricycle": {
-        "AP_50": 0.2823,
+      "tricycle": {
+        "AP_50": 0.2824,
         "AP_50_95": 0.1528
       },
-      "bus": {
+      "awning-tricycle": {
         "AP_50": 0.1813,
         "AP_50_95": 0.112
       },
-      "motor": {
+      "bus": {
         "AP_50": 0.5971,
-        "AP_50_95": 0.4405
+        "AP_50_95": 0.4406
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 43.95
+  "inference_time_s": 43.97
 }

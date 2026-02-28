@@ -13,6 +13,10 @@ import sys
 import json
 import argparse
 import numpy as np
+
+# Ensure stdout can handle unicode characters when redirected
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 import yaml
 from pathlib import Path
 

@@ -40,61 +40,57 @@
     "description": "P2-P3 feature fusion in neck"
   },
   "metrics": {
-    "mAP_50_95": 0.2434,
-    "mAP_50": 0.3966,
-    "mAP_75": 0.2489,
-    "mAP_small": 0.1598,
-    "mAP_medium": 0.3351,
-    "mAP_large": 0.4456,
-    "AR_1": 0.107,
-    "AR_10": 0.2943,
-    "AR_100": 0.3954,
-    "AR_small": 0.3065,
-    "AR_medium": 0.5079,
-    "AR_large": 0.5789,
+    "mAP_50_95": 0.2699,
+    "mAP_50": 0.4383,
+    "mAP_75": 0.2765,
+    "mAP_small": 0.1771,
+    "mAP_medium": 0.3715,
+    "mAP_large": 0.4949,
+    "AR_1": 0.1177,
+    "AR_10": 0.3226,
+    "AR_100": 0.4334,
+    "AR_small": 0.3361,
+    "AR_medium": 0.5564,
+    "AR_large": 0.64,
     "per_class_ap": {
       "pedestrian": {
-        "AP_50": 0.0213,
-        "AP_50_95": 0.005
-      },
-      "people": {
         "AP_50": 0.5368,
         "AP_50_95": 0.2528
       },
-      "bicycle": {
+      "people": {
         "AP_50": 0.4481,
         "AP_50_95": 0.1815
       },
-      "car": {
+      "bicycle": {
         "AP_50": 0.1541,
         "AP_50_95": 0.0711
       },
-      "van": {
+      "car": {
         "AP_50": 0.8365,
         "AP_50_95": 0.5935
       },
-      "truck": {
+      "van": {
         "AP_50": 0.5167,
         "AP_50_95": 0.3644
       },
-      "tricycle": {
-        "AP_50": 0.3684,
+      "truck": {
+        "AP_50": 0.3685,
         "AP_50_95": 0.249
       },
-      "awning-tricycle": {
-        "AP_50": 0.2963,
-        "AP_50_95": 0.1643
+      "tricycle": {
+        "AP_50": 0.2965,
+        "AP_50_95": 0.1645
       },
-      "bus": {
+      "awning-tricycle": {
         "AP_50": 0.1694,
         "AP_50_95": 0.1027
       },
-      "motor": {
-        "AP_50": 0.6179,
+      "bus": {
+        "AP_50": 0.618,
         "AP_50_95": 0.4498
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 16.17
+  "inference_time_s": 20.91
 }
