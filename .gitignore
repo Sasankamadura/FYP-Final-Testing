@@ -1,5 +1,4 @@
-# ONNX model files (large files - use Git LFS or share separately)
-*.onnx
+# ONNX model files are now tracked via Git LFS (see .gitattributes)
 
 # Python cache
 __pycache__/
