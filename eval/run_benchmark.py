@@ -210,6 +210,8 @@ def main():
                     bench_results.update(e2e_results)
 
             bench_results["model_size_mb"] = model_info["file_size_mb"]
+            bench_results["total_params"] = model_info.get("total_params")
+            bench_results["param_str"] = model_info.get("param_str", "N/A")
             bench_results["providers"] = model_info["providers"]
 
             all_results[model_key] = {
@@ -219,11 +221,13 @@ def main():
                 **bench_results,
             }
 
+            param_s = model_info.get("param_str", "N/A")
             print(
                 f"  >> Mean: {bench_results['mean_latency_ms']:.2f}ms | "
                 f"FPS: {bench_results['fps']:.1f} | "
                 f"P95: {bench_results['p95_latency_ms']:.2f}ms | "
-                f"Size: {model_info['file_size_mb']:.1f}MB"
+                f"Size: {model_info['file_size_mb']:.1f}MB | "
+                f"Params: {param_s}"
             )
 
         except Exception as e:
@@ -241,17 +245,19 @@ def main():
         print(f"{'=' * 130}")
 
         header = (
-            f"{'Model':<40} {'Dec':>4} {'Mean(ms)':>9} {'P95(ms)':>9} "
+            f"{'Model':<40} {'Dec':>4} {'Params':>10} {'Mean(ms)':>9} {'P95(ms)':>9} "
             f"{'FPS':>8} {'GPU Mem':>8} {'Size(MB)':>9}"
         )
         print(header)
-        print("-" * 130)
+        print("-" * 140)
 
         for key, res in all_results.items():
             gpu_mem_str = f"{res.get('gpu_memory_mb', -1)}M" if res.get('gpu_memory_mb', -1) > 0 else "N/A"
+            param_s = res.get("param_str", "N/A")
             row = (
                 f"{res['name']:<40} "
                 f"{res['decoder_layers']:>4} "
+                f"{param_s:>10} "
                 f"{res['mean_latency_ms']:>9.2f} "
                 f"{res['p95_latency_ms']:>9.2f} "
                 f"{res['fps']:>8.1f} "

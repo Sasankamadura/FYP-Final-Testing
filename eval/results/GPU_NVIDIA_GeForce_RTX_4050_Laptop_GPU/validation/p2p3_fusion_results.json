@@ -32,7 +32,7 @@
   "config": {
     "name": "P2-P3 Fusion",
     "path": "Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "neck",
     "description": "P2-P3 feature fusion in neck"

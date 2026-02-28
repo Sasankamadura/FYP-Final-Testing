@@ -32,7 +32,7 @@
   "config": {
     "name": "Aware Loss Reweighting",
     "path": "Checkpoints - After improvements/3- Aware Loss Reweighting/model (1).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "training",
     "description": "Class/scale-aware loss reweighting"

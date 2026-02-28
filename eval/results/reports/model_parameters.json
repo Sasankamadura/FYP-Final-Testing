@@ -1,0 +1,164 @@
+{
+  "baseline_rtdetr_r18": {
+    "name": "RT-DETR R18 Baseline",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "baseline",
+    "total_params": 19880804,
+    "param_str": "19.88M",
+    "file_size_mb": 76.74
+  },
+  "p2p3_fusion": {
+    "name": "P2-P3 Fusion",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "total_params": 22252580,
+    "param_str": "22.25M",
+    "file_size_mb": 85.78
+  },
+  "query_imp": {
+    "name": "Query Importance",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "decoder",
+    "total_params": 19880804,
+    "param_str": "19.88M",
+    "file_size_mb": 76.74
+  },
+  "aware_loss": {
+    "name": "Aware Loss Reweighting",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "training",
+    "total_params": 19880804,
+    "param_str": "19.88M",
+    "file_size_mb": 76.74
+  },
+  "gnconv": {
+    "name": "gnConv",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "backbone",
+    "total_params": 18983012,
+    "param_str": "18.98M",
+    "file_size_mb": 73.41
+  },
+  "p2_layer": {
+    "name": "P2 Layer",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "total_params": 21907332,
+    "param_str": "21.91M",
+    "file_size_mb": 85.0
+  },
+  "slim_p2_c": {
+    "name": "SLIM P2 (Channel)",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "total_params": 21083332,
+    "param_str": "21.08M",
+    "file_size_mb": 81.85
+  },
+  "slim_p2_inc": {
+    "name": "SLIM P2 (Inception)",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "total_params": 32028304,
+    "param_str": "32.03M",
+    "file_size_mb": 123.87
+  },
+  "gnconv_p2": {
+    "name": "gnConv + P2 (6-dec)",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 28076304,
+    "param_str": "28.08M",
+    "file_size_mb": 108.94
+  },
+  "gnconv_p2_crr": {
+    "name": "gnConv + P2 (3-dec)",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 20560644,
+    "param_str": "20.56M",
+    "file_size_mb": 80.01
+  },
+  "gnconv_p2_repvgg": {
+    "name": "gnConv + P2 + RepVGG (6-dec)",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 29050512,
+    "param_str": "29.05M",
+    "file_size_mb": 112.63
+  },
+  "gnconv_p2_repvgg_crr": {
+    "name": "gnConv + P2 + RepVGG (3-dec)",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 20785092,
+    "param_str": "20.79M",
+    "file_size_mb": 80.84
+  },
+  "gnconv_slim_p2_repvgg": {
+    "name": "gnConv + SLIM-P2 + RepVGG (6-dec)",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 27157264,
+    "param_str": "27.16M",
+    "file_size_mb": 105.41
+  },
+  "gnconv_slim_p2_repvgg_crr": {
+    "name": "gnConv + SLIM-P2 + RepVGG (3-dec)",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 19961092,
+    "param_str": "19.96M",
+    "file_size_mb": 77.69
+  },
+  "gnconv_p2_integrated": {
+    "name": "(gnConV+P2) Integrated",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 21682884,
+    "param_str": "21.68M",
+    "file_size_mb": 84.17
+  },
+  "gnconv_slim_p2_integrated": {
+    "name": "(gnConv+SLIM-P2) Integrated",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "total_params": 21036772,
+    "param_str": "21.04M",
+    "file_size_mb": 81.7
+  },
+  "efficientnet_b2": {
+    "name": "EfficientNet-B2",
+    "decoder_layers": 3,
+    "backbone": "EfficientNet-B2",
+    "category": "backbone",
+    "total_params": 15754766,
+    "param_str": "15.75M",
+    "file_size_mb": 61.08
+  },
+  "efficientnet_b2_p2": {
+    "name": "EfficientNet-B2 + P2",
+    "decoder_layers": 3,
+    "backbone": "EfficientNet-B2",
+    "category": "backbone",
+    "total_params": 17771054,
+    "param_str": "17.77M",
+    "file_size_mb": 70.47
+  }
+}

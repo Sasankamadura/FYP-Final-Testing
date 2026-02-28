@@ -147,11 +147,89 @@ class OnnxDetector:
         else:
             return "multi_tensor"
 
+    def get_param_count(self):
+        """Count trainable parameters in the ONNX model.
+
+        Loads the ONNX graph and sums the sizes of all initializers
+        (weights, biases, etc.).
+
+        Returns:
+            dict with total_params, param_breakdown (by layer type),
+            and human-readable param_str.  Returns None values on error.
+        """
+        try:
+            import onnx
+            from functools import reduce
+            import operator
+        except ImportError:
+            # Try fallback location (Windows long-path workaround)
+            try:
+                import sys
+                if r"D:\onnx_lib" not in sys.path:
+                    sys.path.insert(0, r"D:\onnx_lib")
+                import onnx
+                from functools import reduce
+                import operator
+            except ImportError:
+                pass
+            print("  [WARN] 'onnx' package not installed. "
+                  "Install with: pip install onnx")
+            return {
+                "total_params": None,
+                "trainable_params": None,
+                "param_str": "N/A (onnx not installed)",
+                "param_breakdown": {},
+            }
+
+        model = onnx.load(self.model_path, load_external_data=False)
+
+        total_params = 0
+        breakdown = {}  # {component: param_count}
+
+        for initializer in model.graph.initializer:
+            numel = reduce(operator.mul, initializer.dims, 1)
+            total_params += numel
+
+            # Group by semantic component:
+            #  - Named layers (e.g. "model.backbone..." → backbone)
+            #  - ONNX anonymous ops (e.g. "onnx::Conv_123" → Conv)
+            name = initializer.name
+            if name.startswith("onnx::"):
+                # Extract op type: "onnx::Conv_123" → "Conv"
+                prefix = name.split("::")[1].split("_")[0]
+            elif "." in name:
+                # Named layers: "model.backbone.layer1..." → backbone
+                parts = name.split(".")
+                prefix = parts[1] if len(parts) > 1 else parts[0]
+            else:
+                prefix = name
+            breakdown[prefix] = breakdown.get(prefix, 0) + numel
+
+        # Human-readable string
+        if total_params >= 1e6:
+            param_str = f"{total_params / 1e6:.2f}M"
+        elif total_params >= 1e3:
+            param_str = f"{total_params / 1e3:.2f}K"
+        else:
+            param_str = str(total_params)
+
+        # Sort breakdown by count descending
+        breakdown = dict(
+            sorted(breakdown.items(), key=lambda x: x[1], reverse=True)
+        )
+
+        return {
+            "total_params": total_params,
+            "trainable_params": total_params,  # ONNX has no frozen distinction
+            "param_str": param_str,
+            "param_breakdown": breakdown,
+        }
+
     def get_model_info(self):
         """Get model metadata as a dictionary."""
         file_size_mb = os.path.getsize(self.model_path) / (1024 * 1024)
 
-        return {
+        info = {
             "model_path": self.model_path,
             "file_size_mb": round(file_size_mb, 2),
             "input_names": list(self.input_names.keys()),
@@ -163,6 +241,13 @@ class OnnxDetector:
             "output_format": self._output_format,
             "providers": self.session.get_providers(),
         }
+
+        # Include parameter count
+        param_info = self.get_param_count()
+        info["total_params"] = param_info["total_params"]
+        info["param_str"] = param_info["param_str"]
+
+        return info
 
     def preprocess(self, image):
         """Preprocess image for inference.

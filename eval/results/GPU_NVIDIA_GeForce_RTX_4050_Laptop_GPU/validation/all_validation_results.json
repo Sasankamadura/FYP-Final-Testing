@@ -131,7 +131,7 @@
     "config": {
       "name": "P2-P3 Fusion",
       "path": "Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "neck",
       "description": "P2-P3 feature fusion in neck"
@@ -229,7 +229,7 @@
     "config": {
       "name": "Query Importance",
       "path": "Checkpoints - After improvements/2-Query IMP/model (1).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "decoder",
       "description": "Improved query selection mechanism"
@@ -327,7 +327,7 @@
     "config": {
       "name": "Aware Loss Reweighting",
       "path": "Checkpoints - After improvements/3- Aware Loss Reweighting/model (1).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "training",
       "description": "Class/scale-aware loss reweighting"
@@ -425,7 +425,7 @@
     "config": {
       "name": "gnConv",
       "path": "Checkpoints - After improvements/5 - gnconv/model (1).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "backbone",
       "description": "Global/gated convolutions (HorNet-style)"
@@ -523,7 +523,7 @@
     "config": {
       "name": "P2 Layer",
       "path": "Checkpoints - After improvements/6 - p2 layer/model (2).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "neck",
       "description": "Additional high-resolution P2 detection layer"
@@ -621,7 +621,7 @@
     "config": {
       "name": "SLIM P2 (Channel)",
       "path": "Checkpoints - After improvements/6_1 - SLIM p2 layer C/model (2).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "neck",
       "description": "Slim P2 layer - channel reduced variant"
@@ -1405,7 +1405,7 @@
     "config": {
       "name": "(gnConV+P2) Integrated",
       "path": "Checkpoints - After improvements/8 - (gnConV+p2)/model (2).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "combined",
       "description": "Integrated gnConv + P2 design"
@@ -1503,7 +1503,7 @@
     "config": {
       "name": "(gnConv+SLIM-P2) Integrated",
       "path": "Checkpoints - After improvements/8_1 - (gnConv+SLIMp2)/model (2).onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "ResNet-18",
       "category": "combined",
       "description": "Integrated gnConv + SLIM P2 design"
@@ -1601,7 +1601,7 @@
     "config": {
       "name": "EfficientNet-B2",
       "path": "Checkpoints - After improvements/EfficientNet-B2/model_EFI.onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "EfficientNet-B2",
       "category": "backbone",
       "description": "EfficientNet-B2 backbone replacement"
@@ -1699,7 +1699,7 @@
     "config": {
       "name": "EfficientNet-B2 + P2",
       "path": "Checkpoints - After improvements/EfficientNet-B2+P2/model_EFI_P2.onnx",
-      "decoder_layers": 6,
+      "decoder_layers": 3,
       "backbone": "EfficientNet-B2",
       "category": "backbone",
       "description": "EfficientNet-B2 backbone + P2 layer"

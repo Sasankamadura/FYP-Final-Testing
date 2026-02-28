@@ -170,16 +170,16 @@ def generate_speed_accuracy_table(val_results, bench_results, output_dir):
         print("  Need both validation and benchmark results for this analysis.")
         return
 
-    print(f"\n{'=' * 150}")
+    print(f"\n{'=' * 160}")
     print("  SPEED vs ACCURACY COMPARISON")
-    print(f"{'=' * 150}")
+    print(f"{'=' * 160}")
 
     header = (
         f"{'Model':<40} {'mAP@50':>8} {'mAP@50:95':>10} {'AP-S':>8} "
-        f"{'Latency(ms)':>12} {'FPS':>8} {'Size(MB)':>9} {'Efficiency':>10}"
+        f"{'Params':>10} {'Latency(ms)':>12} {'FPS':>8} {'Size(MB)':>9} {'Efficiency':>10}"
     )
     print(header)
-    print("-" * 150)
+    print("-" * 160)
 
     rows = []
     for key in val_results:
@@ -192,6 +192,8 @@ def generate_speed_accuracy_table(val_results, bench_results, output_dir):
         latency = b["mean_latency_ms"]
         fps = b["fps"]
         size = b.get("model_size_mb", 0)
+        param_str = b.get("param_str", "N/A")
+        total_params = b.get("total_params", None)
 
         # Efficiency = mAP@50 * FPS (higher is better)
         efficiency = m["mAP_50"] * fps
@@ -199,6 +201,7 @@ def generate_speed_accuracy_table(val_results, bench_results, output_dir):
         print(
             f"{v['name']:<40} "
             f"{m['mAP_50']:>8.4f} {m['mAP_50_95']:>10.4f} {m['mAP_small']:>8.4f} "
+            f"{param_str:>10} "
             f"{latency:>11.2f}  {fps:>8.1f} {size:>9.1f} {efficiency:>10.2f}"
         )
 
@@ -207,13 +210,15 @@ def generate_speed_accuracy_table(val_results, bench_results, output_dir):
             "mAP_50": m["mAP_50"],
             "mAP_50_95": m["mAP_50_95"],
             "mAP_small": m["mAP_small"],
+            "total_params": total_params if total_params else "",
+            "param_str": param_str,
             "latency_ms": latency,
             "fps": fps,
             "size_mb": size,
             "efficiency_score": round(efficiency, 2),
         })
 
-    print(f"{'=' * 150}")
+    print(f"{'=' * 160}")
     print("  Efficiency = mAP@50 x FPS (higher is better)")
 
     csv_path = os.path.join(output_dir, "speed_accuracy_comparison.csv")
@@ -233,16 +238,16 @@ def generate_decoder_comparison(val_results, bench_results, output_dir):
         ("gnconv_slim_p2_repvgg", "gnconv_slim_p2_repvgg_crr", "gnConv + SLIM-P2 + RepVGG"),
     ]
 
-    print(f"\n{'=' * 130}")
+    print(f"\n{'=' * 140}")
     print("  3-DECODER (CRR) vs 6-DECODER COMPARISON")
-    print(f"{'=' * 130}")
+    print(f"{'=' * 140}")
 
     header = (
-        f"{'Architecture':<35} {'Config':>8} {'mAP@50':>8} {'mAP@50:95':>10} "
+        f"{'Architecture':<35} {'Config':>8} {'Params':>10} {'mAP@50':>8} {'mAP@50:95':>10} "
         f"{'AP-S':>8} {'Latency(ms)':>12} {'FPS':>8}"
     )
     print(header)
-    print("-" * 130)
+    print("-" * 140)
 
     for key_6dec, key_3dec, arch_name in pairs:
         for key, dec_label in [(key_6dec, "6-dec"), (key_3dec, "3-dec (CRR)")]:
@@ -252,18 +257,20 @@ def generate_decoder_comparison(val_results, bench_results, output_dir):
             m = v["metrics"]
             lat = bench_results[key]["mean_latency_ms"] if bench_results and key in bench_results else -1
             fps = bench_results[key]["fps"] if bench_results and key in bench_results else -1
+            param_str = bench_results[key].get("param_str", "N/A") if bench_results and key in bench_results else "N/A"
 
             lat_str = f"{lat:>11.2f}" if lat > 0 else "        N/A"
             fps_str = f"{fps:>8.1f}" if fps > 0 else "     N/A"
 
             print(
                 f"{arch_name:<35} {dec_label:>8} "
+                f"{param_str:>10} "
                 f"{m['mAP_50']:>8.4f} {m['mAP_50_95']:>10.4f} {m['mAP_small']:>8.4f} "
                 f"{lat_str}  {fps_str}"
             )
-        print("-" * 130)
+        print("-" * 140)
 
-    print(f"{'=' * 130}")
+    print(f"{'=' * 140}")
 
 
 # ============================================================

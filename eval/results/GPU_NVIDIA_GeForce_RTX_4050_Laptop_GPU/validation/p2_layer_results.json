@@ -32,7 +32,7 @@
   "config": {
     "name": "P2 Layer",
     "path": "Checkpoints - After improvements/6 - p2 layer/model (2).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "neck",
     "description": "Additional high-resolution P2 detection layer"

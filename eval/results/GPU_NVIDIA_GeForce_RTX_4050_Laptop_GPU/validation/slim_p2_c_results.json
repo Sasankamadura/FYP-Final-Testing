@@ -32,7 +32,7 @@
   "config": {
     "name": "SLIM P2 (Channel)",
     "path": "Checkpoints - After improvements/6_1 - SLIM p2 layer C/model (2).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "neck",
     "description": "Slim P2 layer - channel reduced variant"

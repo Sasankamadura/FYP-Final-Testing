@@ -1,0 +1,19 @@
+model_key,model_name,decoder_layers,backbone,category,total_params,param_str,file_size_mb
+baseline_rtdetr_r18,RT-DETR R18 Baseline,3,ResNet-18,baseline,19880804,19.88M,76.74
+p2p3_fusion,P2-P3 Fusion,3,ResNet-18,neck,22252580,22.25M,85.78
+query_imp,Query Importance,3,ResNet-18,decoder,19880804,19.88M,76.74
+aware_loss,Aware Loss Reweighting,3,ResNet-18,training,19880804,19.88M,76.74
+gnconv,gnConv,3,ResNet-18,backbone,18983012,18.98M,73.41
+p2_layer,P2 Layer,3,ResNet-18,neck,21907332,21.91M,85.0
+slim_p2_c,SLIM P2 (Channel),3,ResNet-18,neck,21083332,21.08M,81.85
+slim_p2_inc,SLIM P2 (Inception),3,ResNet-18,neck,32028304,32.03M,123.87
+gnconv_p2,gnConv + P2 (6-dec),6,ResNet-18,combined,28076304,28.08M,108.94
+gnconv_p2_crr,gnConv + P2 (3-dec),3,ResNet-18,combined,20560644,20.56M,80.01
+gnconv_p2_repvgg,gnConv + P2 + RepVGG (6-dec),6,ResNet-18,combined,29050512,29.05M,112.63
+gnconv_p2_repvgg_crr,gnConv + P2 + RepVGG (3-dec),3,ResNet-18,combined,20785092,20.79M,80.84
+gnconv_slim_p2_repvgg,gnConv + SLIM-P2 + RepVGG (6-dec),6,ResNet-18,combined,27157264,27.16M,105.41
+gnconv_slim_p2_repvgg_crr,gnConv + SLIM-P2 + RepVGG (3-dec),3,ResNet-18,combined,19961092,19.96M,77.69
+gnconv_p2_integrated,(gnConV+P2) Integrated,3,ResNet-18,combined,21682884,21.68M,84.17
+gnconv_slim_p2_integrated,(gnConv+SLIM-P2) Integrated,3,ResNet-18,combined,21036772,21.04M,81.7
+efficientnet_b2,EfficientNet-B2,3,EfficientNet-B2,backbone,15754766,15.75M,61.08
+efficientnet_b2_p2,EfficientNet-B2 + P2,3,EfficientNet-B2,backbone,17771054,17.77M,70.47

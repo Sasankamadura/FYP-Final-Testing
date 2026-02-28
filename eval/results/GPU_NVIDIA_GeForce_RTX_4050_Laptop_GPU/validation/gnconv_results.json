@@ -32,7 +32,7 @@
   "config": {
     "name": "gnConv",
     "path": "Checkpoints - After improvements/5 - gnconv/model (1).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "backbone",
     "description": "Global/gated convolutions (HorNet-style)"

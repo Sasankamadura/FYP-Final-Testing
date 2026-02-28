@@ -25,7 +25,7 @@
   },
   "p2p3_fusion": {
     "name": "P2-P3 Fusion",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 27.243,
     "std_latency_ms": 3.979,
@@ -49,7 +49,7 @@
   },
   "query_imp": {
     "name": "Query Importance",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 25.476,
     "std_latency_ms": 4.332,
@@ -73,7 +73,7 @@
   },
   "aware_loss": {
     "name": "Aware Loss Reweighting",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 23.488,
     "std_latency_ms": 5.524,
@@ -97,7 +97,7 @@
   },
   "gnconv": {
     "name": "gnConv",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 55.719,
     "std_latency_ms": 7.759,
@@ -121,7 +121,7 @@
   },
   "p2_layer": {
     "name": "P2 Layer",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 33.804,
     "std_latency_ms": 4.053,
@@ -145,7 +145,7 @@
   },
   "slim_p2_c": {
     "name": "SLIM P2 (Channel)",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 31.075,
     "std_latency_ms": 6.034,
@@ -337,7 +337,7 @@
   },
   "gnconv_p2_integrated": {
     "name": "(gnConV+P2) Integrated",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 56.843,
     "std_latency_ms": 5.05,
@@ -361,7 +361,7 @@
   },
   "gnconv_slim_p2_integrated": {
     "name": "(gnConv+SLIM-P2) Integrated",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "mean_latency_ms": 42.686,
     "std_latency_ms": 6.516,
@@ -385,7 +385,7 @@
   },
   "efficientnet_b2": {
     "name": "EfficientNet-B2",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "EfficientNet-B2",
     "mean_latency_ms": 35.924,
     "std_latency_ms": 8.305,
@@ -409,7 +409,7 @@
   },
   "efficientnet_b2_p2": {
     "name": "EfficientNet-B2 + P2",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "EfficientNet-B2",
     "mean_latency_ms": 46.385,
     "std_latency_ms": 5.025,

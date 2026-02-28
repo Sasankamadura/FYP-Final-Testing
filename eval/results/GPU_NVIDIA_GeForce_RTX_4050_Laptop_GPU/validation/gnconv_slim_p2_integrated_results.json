@@ -32,7 +32,7 @@
   "config": {
     "name": "(gnConv+SLIM-P2) Integrated",
     "path": "Checkpoints - After improvements/8_1 - (gnConv+SLIMp2)/model (2).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "combined",
     "description": "Integrated gnConv + SLIM P2 design"

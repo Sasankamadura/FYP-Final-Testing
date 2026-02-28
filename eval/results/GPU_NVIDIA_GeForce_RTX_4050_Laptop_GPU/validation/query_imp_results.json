@@ -32,7 +32,7 @@
   "config": {
     "name": "Query Importance",
     "path": "Checkpoints - After improvements/2-Query IMP/model (1).onnx",
-    "decoder_layers": 6,
+    "decoder_layers": 3,
     "backbone": "ResNet-18",
     "category": "decoder",
     "description": "Improved query selection mechanism"
