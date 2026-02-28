@@ -277,15 +277,27 @@ def generate_decoder_comparison(val_results, bench_results, output_dir):
 #  PLOT GENERATORS
 # ============================================================
 
-def generate_plots(val_results, bench_results, output_dir):
-    """Generate all comparison plots."""
+def _init_matplotlib():
+    """Import and configure matplotlib. Returns (matplotlib, plt) or (None, None)."""
     try:
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
+        return matplotlib, plt
     except ImportError:
         print("  [WARN] matplotlib not installed. Skipping plot generation.")
         print("         Install with: pip install matplotlib")
+        return None, None
+
+
+def generate_common_plots(val_results, output_dir):
+    """Generate accuracy-only plots (GPU-independent).
+
+    These plots depend only on validation metrics and are identical
+    regardless of which GPU was used.  Saved to reports/plots/.
+    """
+    _, plt = _init_matplotlib()
+    if plt is None:
         return
 
     plots_dir = os.path.join(output_dir, "plots")
@@ -312,9 +324,88 @@ def generate_plots(val_results, bench_results, output_dir):
         plt.tight_layout()
         plt.savefig(os.path.join(plots_dir, "mAP50_comparison.png"), dpi=150)
         plt.close()
-        print(f"  Saved: plots/mAP50_comparison.png")
+        print(f"  Saved: {plots_dir}/mAP50_comparison.png")
 
-    # ---- Plot 2: Accuracy vs Latency Scatter (Pareto Analysis) ----
+    # ---- Plot 2: AP by Object Size (Grouped Bar) ----
+    if val_results:
+        names = [r["name"] for r in val_results.values()]
+        ap_small = [r["metrics"]["mAP_small"] for r in val_results.values()]
+        ap_medium = [r["metrics"]["mAP_medium"] for r in val_results.values()]
+        ap_large = [r["metrics"]["mAP_large"] for r in val_results.values()]
+
+        x = np.arange(len(names))
+        width = 0.25
+
+        fig, ax = plt.subplots(figsize=(16, max(8, len(names) * 0.4)))
+        ax.bar(x - width, ap_small, width, label="AP-Small", color="#e74c3c", alpha=0.85)
+        ax.bar(x, ap_medium, width, label="AP-Medium", color="#3498db", alpha=0.85)
+        ax.bar(x + width, ap_large, width, label="AP-Large", color="#2ecc71", alpha=0.85)
+
+        ax.set_xticks(x)
+        ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
+        ax.set_ylabel("Average Precision", fontsize=12)
+        ax.set_title("AP by Object Size Across Models", fontsize=14)
+        ax.legend(fontsize=10)
+        ax.grid(True, alpha=0.3, axis="y")
+
+        plt.tight_layout()
+        plt.savefig(os.path.join(plots_dir, "ap_by_object_size.png"), dpi=150)
+        plt.close()
+        print(f"  Saved: {plots_dir}/ap_by_object_size.png")
+
+    # ---- Plot 3: Per-Class AP Heatmap ----
+    if val_results:
+        all_classes = set()
+        for res in val_results.values():
+            pc = res.get("metrics", {}).get("per_class_ap", {})
+            all_classes.update(pc.keys())
+        all_classes = sorted(all_classes)
+
+        if all_classes:
+            model_names = [r["name"] for r in val_results.values()]
+            data = []
+            for res in val_results.values():
+                pc = res.get("metrics", {}).get("per_class_ap", {})
+                row = [pc.get(c, {}).get("AP_50", 0) for c in all_classes]
+                data.append(row)
+            data = np.array(data)
+
+            fig, ax = plt.subplots(figsize=(14, max(8, len(model_names) * 0.5)))
+            im = ax.imshow(data, cmap="YlOrRd", aspect="auto", vmin=0, vmax=1)
+
+            ax.set_xticks(range(len(all_classes)))
+            ax.set_xticklabels(all_classes, rotation=45, ha="right", fontsize=9)
+            ax.set_yticks(range(len(model_names)))
+            ax.set_yticklabels(model_names, fontsize=8)
+
+            # Value annotations
+            for i in range(len(model_names)):
+                for j in range(len(all_classes)):
+                    ax.text(j, i, f"{data[i, j]:.2f}", ha="center", va="center", fontsize=7,
+                            color="white" if data[i, j] > 0.5 else "black")
+
+            ax.set_title("Per-Class AP@50 Heatmap", fontsize=14)
+            plt.colorbar(im, ax=ax, label="AP@50", shrink=0.8)
+            plt.tight_layout()
+            plt.savefig(os.path.join(plots_dir, "per_class_ap_heatmap.png"), dpi=150)
+            plt.close()
+            print(f"  Saved: {plots_dir}/per_class_ap_heatmap.png")
+
+
+def generate_gpu_plots(val_results, bench_results, output_dir):
+    """Generate GPU-specific plots (depend on benchmark data).
+
+    These plots use latency/FPS numbers that differ per GPU.
+    Saved to <GPU_tag>/reports/plots/.
+    """
+    _, plt = _init_matplotlib()
+    if plt is None:
+        return
+
+    plots_dir = os.path.join(output_dir, "plots")
+    os.makedirs(plots_dir, exist_ok=True)
+
+    # ---- Accuracy vs Latency Scatter (Pareto Analysis) ----
     if val_results and bench_results:
         common_keys = set(val_results.keys()) & set(bench_results.keys())
 
@@ -352,74 +443,9 @@ def generate_plots(val_results, bench_results, output_dir):
             plt.tight_layout()
             plt.savefig(os.path.join(plots_dir, "accuracy_vs_latency.png"), dpi=150)
             plt.close()
-            print(f"  Saved: plots/accuracy_vs_latency.png")
+            print(f"  Saved: {plots_dir}/accuracy_vs_latency.png")
 
-    # ---- Plot 3: AP by Object Size (Grouped Bar) ----
-    if val_results:
-        names = [r["name"] for r in val_results.values()]
-        ap_small = [r["metrics"]["mAP_small"] for r in val_results.values()]
-        ap_medium = [r["metrics"]["mAP_medium"] for r in val_results.values()]
-        ap_large = [r["metrics"]["mAP_large"] for r in val_results.values()]
-
-        x = np.arange(len(names))
-        width = 0.25
-
-        fig, ax = plt.subplots(figsize=(16, max(8, len(names) * 0.4)))
-        ax.bar(x - width, ap_small, width, label="AP-Small", color="#e74c3c", alpha=0.85)
-        ax.bar(x, ap_medium, width, label="AP-Medium", color="#3498db", alpha=0.85)
-        ax.bar(x + width, ap_large, width, label="AP-Large", color="#2ecc71", alpha=0.85)
-
-        ax.set_xticks(x)
-        ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
-        ax.set_ylabel("Average Precision", fontsize=12)
-        ax.set_title("AP by Object Size Across Models", fontsize=14)
-        ax.legend(fontsize=10)
-        ax.grid(True, alpha=0.3, axis="y")
-
-        plt.tight_layout()
-        plt.savefig(os.path.join(plots_dir, "ap_by_object_size.png"), dpi=150)
-        plt.close()
-        print(f"  Saved: plots/ap_by_object_size.png")
-
-    # ---- Plot 4: Per-Class AP Heatmap ----
-    if val_results:
-        all_classes = set()
-        for res in val_results.values():
-            pc = res.get("metrics", {}).get("per_class_ap", {})
-            all_classes.update(pc.keys())
-        all_classes = sorted(all_classes)
-
-        if all_classes:
-            model_names = [r["name"] for r in val_results.values()]
-            data = []
-            for res in val_results.values():
-                pc = res.get("metrics", {}).get("per_class_ap", {})
-                row = [pc.get(c, {}).get("AP_50", 0) for c in all_classes]
-                data.append(row)
-            data = np.array(data)
-
-            fig, ax = plt.subplots(figsize=(14, max(8, len(model_names) * 0.5)))
-            im = ax.imshow(data, cmap="YlOrRd", aspect="auto", vmin=0, vmax=1)
-
-            ax.set_xticks(range(len(all_classes)))
-            ax.set_xticklabels(all_classes, rotation=45, ha="right", fontsize=9)
-            ax.set_yticks(range(len(model_names)))
-            ax.set_yticklabels(model_names, fontsize=8)
-
-            # Value annotations
-            for i in range(len(model_names)):
-                for j in range(len(all_classes)):
-                    ax.text(j, i, f"{data[i, j]:.2f}", ha="center", va="center", fontsize=7,
-                            color="white" if data[i, j] > 0.5 else "black")
-
-            ax.set_title("Per-Class AP@50 Heatmap", fontsize=14)
-            plt.colorbar(im, ax=ax, label="AP@50", shrink=0.8)
-            plt.tight_layout()
-            plt.savefig(os.path.join(plots_dir, "per_class_ap_heatmap.png"), dpi=150)
-            plt.close()
-            print(f"  Saved: plots/per_class_ap_heatmap.png")
-
-    # ---- Plot 5: FPS Bar Chart ----
+    # ---- FPS Bar Chart ----
     if bench_results:
         names = [r["name"] for r in bench_results.values()]
         fps_vals = [r["fps"] for r in bench_results.values()]
@@ -442,7 +468,7 @@ def generate_plots(val_results, bench_results, output_dir):
         plt.tight_layout()
         plt.savefig(os.path.join(plots_dir, "fps_comparison.png"), dpi=150)
         plt.close()
-        print(f"  Saved: plots/fps_comparison.png")
+        print(f"  Saved: {plots_dir}/fps_comparison.png")
 
 
 # ============================================================
@@ -566,11 +592,18 @@ def main():
         target_gpu = gpu_dirs[0]
 
     gpu_results_dir = os.path.join(results_root, target_gpu)
-    report_dir = os.path.join(results_root, "reports")
-    os.makedirs(report_dir, exist_ok=True)
+
+    # Common reports (accuracy-only, GPU-independent)
+    common_report_dir = os.path.join(results_root, "reports")
+    os.makedirs(common_report_dir, exist_ok=True)
+
+    # GPU-specific reports (latency/FPS dependent)
+    gpu_report_dir = os.path.join(gpu_results_dir, "reports")
+    os.makedirs(gpu_report_dir, exist_ok=True)
 
     print(f"\nAnalyzing results for: {target_gpu}")
-    print(f"Report output: {report_dir}")
+    print(f"  Common reports:      {common_report_dir}")
+    print(f"  GPU-specific reports: {gpu_report_dir}")
 
     # ---- Load Results ----
     val_file = os.path.join(gpu_results_dir, "validation", "all_validation_results.json")
@@ -587,27 +620,36 @@ def main():
     else:
         print(f"  [WARN] No benchmark results found at: {bench_file}")
 
-    # ---- Generate Tables ----
+    # ---- Common Tables (accuracy-only, same across GPUs) ----
     if val_results:
-        generate_accuracy_table(val_results, report_dir)
-        generate_per_class_table(val_results, report_dir)
+        generate_accuracy_table(val_results, common_report_dir)
+        generate_per_class_table(val_results, common_report_dir)
 
+    # ---- GPU-Specific Tables (depend on benchmark latency/FPS) ----
     if val_results and bench_results:
-        generate_speed_accuracy_table(val_results, bench_results, report_dir)
-        generate_decoder_comparison(val_results, bench_results, report_dir)
+        generate_speed_accuracy_table(val_results, bench_results, gpu_report_dir)
+        generate_decoder_comparison(val_results, bench_results, gpu_report_dir)
 
     # ---- Generate Plots ----
     if not args.no_plots:
-        print("\nGenerating plots...")
-        generate_plots(val_results, bench_results, report_dir)
+        # Common plots (accuracy-only) → reports/plots/
+        if val_results:
+            print("\nGenerating common plots (accuracy-only)...")
+            generate_common_plots(val_results, common_report_dir)
+
+        # GPU-specific plots (latency/FPS) → GPU_xxx/reports/plots/
+        if val_results and bench_results:
+            print(f"Generating GPU-specific plots ({target_gpu})...")
+            generate_gpu_plots(val_results, bench_results, gpu_report_dir)
 
     # ---- Cross-GPU Comparison ----
     if len(gpu_dirs) >= 2:
-        generate_cross_gpu_comparison(results_root, report_dir)
+        generate_cross_gpu_comparison(results_root, common_report_dir)
 
     print(f"\n{'=' * 60}")
     print(f"  Report generation complete!")
-    print(f"  Output: {report_dir}")
+    print(f"  Common reports:      {common_report_dir}")
+    print(f"  GPU-specific reports: {gpu_report_dir}")
     print(f"{'=' * 60}")
 
 
