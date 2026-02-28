@@ -179,7 +179,7 @@ def predictions_to_coco_format(image_id, boxes_xyxy, scores, class_ids, category
         image_id: COCO image ID.
         boxes_xyxy: [N, 4] in xyxy format (original image coordinates).
         scores: [N] confidence scores.
-        class_ids: [N] class indices (0-based from model output).
+        class_ids: [N] class indices (1-based from model output for VisDrone RT-DETR).
         category_mapping: dict mapping model class index -> COCO category ID.
 
     Returns:

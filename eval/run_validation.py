@@ -36,15 +36,20 @@ def load_config(config_path):
 
 
 def build_category_mapping(coco_data):
-    """Build mapping from 0-based model class index to COCO category ID.
+    """Build mapping from model output label to COCO category ID.
 
-    Reads the 'categories' list from the annotation file and maps
-    sequential model output indices (0, 1, 2, ...) to actual COCO category IDs.
+    PaddleDetection RT-DETR ONNX exports add +1 to internal 0-based class
+    indices, producing labels 1–N. VisDrone annotations use cat_ids 1–10.
+    Empirically verified: model_label N → cat_id N+1.
+
+    The original 0-based mapping {0→1, 1→2, ..., 9→10} handles this
+    correctly because model labels 1–9 look up keys 1–9 and get cat_ids 2–10.
+    Label 0 (pedestrian) is never produced at meaningful confidence.
     """
     categories = sorted(coco_data["categories"], key=lambda x: x["id"])
     mapping = {}
     for idx, cat in enumerate(categories):
-        mapping[idx] = cat["id"]
+        mapping[idx] = cat["id"]  # 0→1, 1→2, ..., 9→10
     return mapping
 
 

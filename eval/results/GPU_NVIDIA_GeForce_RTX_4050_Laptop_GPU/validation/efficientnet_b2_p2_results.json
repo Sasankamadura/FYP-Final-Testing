@@ -96,5 +96,5 @@
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 24.82
+  "inference_time_s": 24.73
 }

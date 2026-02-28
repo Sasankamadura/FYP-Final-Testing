@@ -52,8 +52,10 @@ def draw_detections(image, boxes, scores, class_ids, conf_threshold=0.25):
         cls_id = int(class_ids[i])
         score = scores[i]
 
-        color = COLORS[cls_id % len(COLORS)]
-        cls_name = CLASS_NAMES[cls_id] if cls_id < len(CLASS_NAMES) else f"cls{cls_id}"
+        # Model outputs 1-based labels (1=pedestrian ... 10=motor)
+        idx = cls_id - 1
+        color = COLORS[idx % len(COLORS)] if idx >= 0 else (200, 200, 200)
+        cls_name = CLASS_NAMES[idx] if 0 <= idx < len(CLASS_NAMES) else f"cls{cls_id}"
 
         # Draw bounding box
         cv2.rectangle(img, (x1, y1), (x2, y2), color, 2)

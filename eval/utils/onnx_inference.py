@@ -310,7 +310,7 @@ class OnnxDetector:
         Returns:
             boxes: [M, 4] in xyxy format (original image coordinates).
             scores: [M] confidence scores.
-            class_ids: [M] class indices (0-based).
+            class_ids: [M] class indices (1-based for VisDrone RT-DETR).
         """
         if self._output_format == "paddle_postprocessed":
             # PaddleDetection: labels [N,M], boxes [N,M,4], scores [N,M]
@@ -347,7 +347,7 @@ class OnnxDetector:
         Returns:
             boxes: [M, 4] xyxy format in original image coordinates.
             scores: [M] confidence scores.
-            class_ids: [M] class indices (0-based).
+            class_ids: [M] class indices (1-based for VisDrone RT-DETR).
         """
         input_tensor, orig_size = self.preprocess(image)
         outputs = self.inference_raw(input_tensor, orig_size)
