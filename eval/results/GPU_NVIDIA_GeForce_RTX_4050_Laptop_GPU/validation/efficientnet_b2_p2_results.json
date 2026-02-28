@@ -27,7 +27,9 @@
     "providers": [
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
-    ]
+    ],
+    "total_params": 17771054,
+    "param_str": "17.77M"
   },
   "config": {
     "name": "EfficientNet-B2 + P2",
@@ -94,5 +96,5 @@
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 36.89
+  "inference_time_s": 24.82
 }

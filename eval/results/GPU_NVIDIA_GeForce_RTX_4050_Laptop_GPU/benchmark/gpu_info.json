@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-02-28T13:09:53.612140",
+  "timestamp": "2026-02-28T20:00:39.844044",
   "platform": "Windows-11-10.0.26200-SP0",
   "python_version": "3.12.10",
   "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
@@ -9,7 +9,7 @@
   "cuda_version": "13.0",
   "cudnn_version": "N/A",
   "driver_version": "581.86",
-  "onnxruntime_version": "1.23.2",
+  "onnxruntime_version": "1.24.2",
   "onnxruntime_providers": [
     "TensorrtExecutionProvider",
     "CUDAExecutionProvider",

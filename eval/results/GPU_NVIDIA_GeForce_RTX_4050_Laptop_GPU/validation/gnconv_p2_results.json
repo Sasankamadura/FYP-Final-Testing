@@ -27,7 +27,9 @@
     "providers": [
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
-    ]
+    ],
+    "total_params": 28076304,
+    "param_str": "28.08M"
   },
   "config": {
     "name": "gnConv + P2 (6-dec)",
@@ -38,29 +40,29 @@
     "description": "gnConv + P2 layer with 6 decoder layers"
   },
   "metrics": {
-    "mAP_50_95": 0.2638,
-    "mAP_50": 0.426,
-    "mAP_75": 0.2749,
-    "mAP_small": 0.182,
-    "mAP_medium": 0.3596,
-    "mAP_large": 0.4745,
-    "AR_1": 0.1144,
-    "AR_10": 0.3093,
-    "AR_100": 0.4078,
-    "AR_small": 0.3254,
+    "mAP_50_95": 0.2637,
+    "mAP_50": 0.4261,
+    "mAP_75": 0.275,
+    "mAP_small": 0.1818,
+    "mAP_medium": 0.3595,
+    "mAP_large": 0.4749,
+    "AR_1": 0.1143,
+    "AR_10": 0.309,
+    "AR_100": 0.4075,
+    "AR_small": 0.3249,
     "AR_medium": 0.5127,
-    "AR_large": 0.6394,
+    "AR_large": 0.6393,
     "per_class_ap": {
       "pedestrian": {
-        "AP_50": 0.0266,
-        "AP_50_95": 0.0064
+        "AP_50": 0.0265,
+        "AP_50_95": 0.0063
       },
       "people": {
-        "AP_50": 0.5489,
-        "AP_50_95": 0.267
+        "AP_50": 0.549,
+        "AP_50_95": 0.2671
       },
       "bicycle": {
-        "AP_50": 0.4564,
+        "AP_50": 0.4565,
         "AP_50_95": 0.186
       },
       "car": {
@@ -69,30 +71,30 @@
       },
       "van": {
         "AP_50": 0.8536,
-        "AP_50_95": 0.6064
+        "AP_50_95": 0.6063
       },
       "truck": {
-        "AP_50": 0.5516,
+        "AP_50": 0.5517,
         "AP_50_95": 0.3908
       },
       "tricycle": {
-        "AP_50": 0.427,
-        "AP_50_95": 0.285
+        "AP_50": 0.4272,
+        "AP_50_95": 0.2851
       },
       "awning-tricycle": {
         "AP_50": 0.3366,
         "AP_50_95": 0.1909
       },
       "bus": {
-        "AP_50": 0.2126,
+        "AP_50": 0.2125,
         "AP_50_95": 0.1347
       },
       "motor": {
-        "AP_50": 0.6634,
-        "AP_50_95": 0.4852
+        "AP_50": 0.6633,
+        "AP_50_95": 0.4843
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 170.73
+  "inference_time_s": 81.25
 }

@@ -27,7 +27,9 @@
     "providers": [
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
-    ]
+    ],
+    "total_params": null,
+    "param_str": "N/A (onnx not installed)"
   },
   "config": {
     "name": "RT-DETR R18 Baseline",
@@ -38,14 +40,14 @@
     "description": "Baseline RT-DETR with ResNet-18 backbone"
   },
   "metrics": {
-    "mAP_50_95": 0.2153,
+    "mAP_50_95": 0.2152,
     "mAP_50": 0.3556,
     "mAP_75": 0.2214,
-    "mAP_small": 0.1318,
+    "mAP_small": 0.1317,
     "mAP_medium": 0.3073,
     "mAP_large": 0.4315,
     "AR_1": 0.0956,
-    "AR_10": 0.2687,
+    "AR_10": 0.2686,
     "AR_100": 0.3624,
     "AR_small": 0.2673,
     "AR_medium": 0.4818,
@@ -56,12 +58,12 @@
         "AP_50_95": 0.0034
       },
       "people": {
-        "AP_50": 0.4658,
-        "AP_50_95": 0.2129
+        "AP_50": 0.4657,
+        "AP_50_95": 0.2128
       },
       "bicycle": {
         "AP_50": 0.3946,
-        "AP_50_95": 0.1502
+        "AP_50_95": 0.1503
       },
       "car": {
         "AP_50": 0.1152,
@@ -73,15 +75,15 @@
       },
       "truck": {
         "AP_50": 0.4753,
-        "AP_50_95": 0.3342
+        "AP_50_95": 0.3341
       },
       "tricycle": {
         "AP_50": 0.3343,
         "AP_50_95": 0.2211
       },
       "awning-tricycle": {
-        "AP_50": 0.2544,
-        "AP_50_95": 0.1377
+        "AP_50": 0.2545,
+        "AP_50_95": 0.1378
       },
       "bus": {
         "AP_50": 0.149,
@@ -94,5 +96,5 @@
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 17.03
+  "inference_time_s": 12.77
 }

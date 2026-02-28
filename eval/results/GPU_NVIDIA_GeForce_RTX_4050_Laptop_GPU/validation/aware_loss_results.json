@@ -27,7 +27,9 @@
     "providers": [
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
-    ]
+    ],
+    "total_params": 19880804,
+    "param_str": "19.88M"
   },
   "config": {
     "name": "Aware Loss Reweighting",
@@ -41,27 +43,27 @@
     "mAP_50_95": 0.1031,
     "mAP_50": 0.1841,
     "mAP_75": 0.1018,
-    "mAP_small": 0.0823,
+    "mAP_small": 0.0824,
     "mAP_medium": 0.1709,
     "mAP_large": 0.1647,
     "AR_1": 0.0724,
     "AR_10": 0.1942,
     "AR_100": 0.2701,
     "AR_small": 0.1849,
-    "AR_medium": 0.3849,
-    "AR_large": 0.4953,
+    "AR_medium": 0.385,
+    "AR_large": 0.4952,
     "per_class_ap": {
       "pedestrian": {
         "AP_50": 0.017,
         "AP_50_95": 0.0033
       },
       "people": {
-        "AP_50": 0.2275,
+        "AP_50": 0.2274,
         "AP_50_95": 0.0959
       },
       "bicycle": {
-        "AP_50": 0.2279,
-        "AP_50_95": 0.0862
+        "AP_50": 0.228,
+        "AP_50_95": 0.0863
       },
       "car": {
         "AP_50": 0.0377,
@@ -77,7 +79,7 @@
       },
       "tricycle": {
         "AP_50": 0.1021,
-        "AP_50_95": 0.0639
+        "AP_50_95": 0.0638
       },
       "awning-tricycle": {
         "AP_50": 0.1325,
@@ -88,11 +90,11 @@
         "AP_50_95": 0.048
       },
       "motor": {
-        "AP_50": 0.1847,
+        "AP_50": 0.1846,
         "AP_50_95": 0.1165
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 18.54
+  "inference_time_s": 20.91
 }

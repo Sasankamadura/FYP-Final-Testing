@@ -27,7 +27,9 @@
     "providers": [
       "CUDAExecutionProvider",
       "CPUExecutionProvider"
-    ]
+    ],
+    "total_params": 18983012,
+    "param_str": "18.98M"
   },
   "config": {
     "name": "gnConv",
@@ -38,17 +40,17 @@
     "description": "Global/gated convolutions (HorNet-style)"
   },
   "metrics": {
-    "mAP_50_95": 0.2107,
-    "mAP_50": 0.352,
-    "mAP_75": 0.2161,
+    "mAP_50_95": 0.2105,
+    "mAP_50": 0.3515,
+    "mAP_75": 0.2156,
     "mAP_small": 0.1275,
-    "mAP_medium": 0.2983,
+    "mAP_medium": 0.2978,
     "mAP_large": 0.4288,
     "AR_1": 0.0983,
-    "AR_10": 0.2646,
-    "AR_100": 0.356,
+    "AR_10": 0.2642,
+    "AR_100": 0.3556,
     "AR_small": 0.2598,
-    "AR_medium": 0.4766,
+    "AR_medium": 0.4756,
     "AR_large": 0.609,
     "per_class_ap": {
       "pedestrian": {
@@ -61,10 +63,10 @@
       },
       "bicycle": {
         "AP_50": 0.3884,
-        "AP_50_95": 0.1501
+        "AP_50_95": 0.1502
       },
       "car": {
-        "AP_50": 0.1165,
+        "AP_50": 0.1166,
         "AP_50_95": 0.0492
       },
       "van": {
@@ -76,7 +78,7 @@
         "AP_50_95": 0.3223
       },
       "tricycle": {
-        "AP_50": 0.3298,
+        "AP_50": 0.3299,
         "AP_50_95": 0.2163
       },
       "awning-tricycle": {
@@ -84,15 +86,15 @@
         "AP_50_95": 0.133
       },
       "bus": {
-        "AP_50": 0.149,
-        "AP_50_95": 0.0919
+        "AP_50": 0.148,
+        "AP_50_95": 0.0917
       },
       "motor": {
-        "AP_50": 0.5424,
-        "AP_50_95": 0.3805
+        "AP_50": 0.5387,
+        "AP_50_95": 0.3786
       }
     }
   },
   "num_predictions": 164400,
-  "inference_time_s": 33.51
+  "inference_time_s": 19.97
 }

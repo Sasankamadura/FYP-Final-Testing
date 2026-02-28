@@ -28,7 +28,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": null,
+      "param_str": "N/A (onnx not installed)"
     },
     "config": {
       "name": "RT-DETR R18 Baseline",
@@ -39,14 +41,14 @@
       "description": "Baseline RT-DETR with ResNet-18 backbone"
     },
     "metrics": {
-      "mAP_50_95": 0.2153,
+      "mAP_50_95": 0.2152,
       "mAP_50": 0.3556,
       "mAP_75": 0.2214,
-      "mAP_small": 0.1318,
+      "mAP_small": 0.1317,
       "mAP_medium": 0.3073,
       "mAP_large": 0.4315,
       "AR_1": 0.0956,
-      "AR_10": 0.2687,
+      "AR_10": 0.2686,
       "AR_100": 0.3624,
       "AR_small": 0.2673,
       "AR_medium": 0.4818,
@@ -57,12 +59,12 @@
           "AP_50_95": 0.0034
         },
         "people": {
-          "AP_50": 0.4658,
-          "AP_50_95": 0.2129
+          "AP_50": 0.4657,
+          "AP_50_95": 0.2128
         },
         "bicycle": {
           "AP_50": 0.3946,
-          "AP_50_95": 0.1502
+          "AP_50_95": 0.1503
         },
         "car": {
           "AP_50": 0.1152,
@@ -74,15 +76,15 @@
         },
         "truck": {
           "AP_50": 0.4753,
-          "AP_50_95": 0.3342
+          "AP_50_95": 0.3341
         },
         "tricycle": {
           "AP_50": 0.3343,
           "AP_50_95": 0.2211
         },
         "awning-tricycle": {
-          "AP_50": 0.2544,
-          "AP_50_95": 0.1377
+          "AP_50": 0.2545,
+          "AP_50_95": 0.1378
         },
         "bus": {
           "AP_50": 0.149,
@@ -95,7 +97,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 17.03
+    "inference_time_s": 12.77
   },
   "p2p3_fusion": {
     "name": "P2-P3 Fusion",
@@ -126,7 +128,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 22252580,
+      "param_str": "22.25M"
     },
     "config": {
       "name": "P2-P3 Fusion",
@@ -138,12 +142,12 @@
     },
     "metrics": {
       "mAP_50_95": 0.2434,
-      "mAP_50": 0.3966,
+      "mAP_50": 0.3965,
       "mAP_75": 0.2488,
-      "mAP_small": 0.1598,
+      "mAP_small": 0.1599,
       "mAP_medium": 0.3351,
       "mAP_large": 0.4456,
-      "AR_1": 0.1071,
+      "AR_1": 0.107,
       "AR_10": 0.2943,
       "AR_100": 0.3953,
       "AR_small": 0.3065,
@@ -159,8 +163,8 @@
           "AP_50_95": 0.2527
         },
         "bicycle": {
-          "AP_50": 0.4481,
-          "AP_50_95": 0.1815
+          "AP_50": 0.448,
+          "AP_50_95": 0.1814
         },
         "car": {
           "AP_50": 0.1541,
@@ -175,25 +179,25 @@
           "AP_50_95": 0.3644
         },
         "tricycle": {
-          "AP_50": 0.3684,
+          "AP_50": 0.3683,
           "AP_50_95": 0.2488
         },
         "awning-tricycle": {
-          "AP_50": 0.2963,
-          "AP_50_95": 0.1644
+          "AP_50": 0.2962,
+          "AP_50_95": 0.1643
         },
         "bus": {
-          "AP_50": 0.1694,
+          "AP_50": 0.1695,
           "AP_50_95": 0.1028
         },
         "motor": {
-          "AP_50": 0.6179,
+          "AP_50": 0.618,
           "AP_50_95": 0.4498
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 16.07
+    "inference_time_s": 15.96
   },
   "query_imp": {
     "name": "Query Importance",
@@ -224,7 +228,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 19880804,
+      "param_str": "19.88M"
     },
     "config": {
       "name": "Query Importance",
@@ -238,14 +244,14 @@
       "mAP_50_95": 0.2201,
       "mAP_50": 0.3638,
       "mAP_75": 0.2246,
-      "mAP_small": 0.1327,
+      "mAP_small": 0.1326,
       "mAP_medium": 0.3118,
       "mAP_large": 0.4243,
       "AR_1": 0.0991,
       "AR_10": 0.2764,
-      "AR_100": 0.3701,
+      "AR_100": 0.3699,
       "AR_small": 0.274,
-      "AR_medium": 0.4934,
+      "AR_medium": 0.4931,
       "AR_large": 0.5672,
       "per_class_ap": {
         "pedestrian": {
@@ -253,7 +259,7 @@
           "AP_50_95": 0.0066
         },
         "people": {
-          "AP_50": 0.4566,
+          "AP_50": 0.4565,
           "AP_50_95": 0.2103
         },
         "bicycle": {
@@ -262,7 +268,7 @@
         },
         "car": {
           "AP_50": 0.1287,
-          "AP_50_95": 0.0541
+          "AP_50_95": 0.054
         },
         "van": {
           "AP_50": 0.8127,
@@ -277,12 +283,12 @@
           "AP_50_95": 0.2286
         },
         "awning-tricycle": {
-          "AP_50": 0.2602,
-          "AP_50_95": 0.1406
+          "AP_50": 0.2601,
+          "AP_50_95": 0.1405
         },
         "bus": {
-          "AP_50": 0.1664,
-          "AP_50_95": 0.1016
+          "AP_50": 0.1663,
+          "AP_50_95": 0.1013
         },
         "motor": {
           "AP_50": 0.5541,
@@ -291,7 +297,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 12.75
+    "inference_time_s": 12.59
   },
   "aware_loss": {
     "name": "Aware Loss Reweighting",
@@ -322,7 +328,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 19880804,
+      "param_str": "19.88M"
     },
     "config": {
       "name": "Aware Loss Reweighting",
@@ -336,27 +344,27 @@
       "mAP_50_95": 0.1031,
       "mAP_50": 0.1841,
       "mAP_75": 0.1018,
-      "mAP_small": 0.0823,
+      "mAP_small": 0.0824,
       "mAP_medium": 0.1709,
       "mAP_large": 0.1647,
       "AR_1": 0.0724,
       "AR_10": 0.1942,
       "AR_100": 0.2701,
       "AR_small": 0.1849,
-      "AR_medium": 0.3849,
-      "AR_large": 0.4953,
+      "AR_medium": 0.385,
+      "AR_large": 0.4952,
       "per_class_ap": {
         "pedestrian": {
           "AP_50": 0.017,
           "AP_50_95": 0.0033
         },
         "people": {
-          "AP_50": 0.2275,
+          "AP_50": 0.2274,
           "AP_50_95": 0.0959
         },
         "bicycle": {
-          "AP_50": 0.2279,
-          "AP_50_95": 0.0862
+          "AP_50": 0.228,
+          "AP_50_95": 0.0863
         },
         "car": {
           "AP_50": 0.0377,
@@ -372,7 +380,7 @@
         },
         "tricycle": {
           "AP_50": 0.1021,
-          "AP_50_95": 0.0639
+          "AP_50_95": 0.0638
         },
         "awning-tricycle": {
           "AP_50": 0.1325,
@@ -383,13 +391,13 @@
           "AP_50_95": 0.048
         },
         "motor": {
-          "AP_50": 0.1847,
+          "AP_50": 0.1846,
           "AP_50_95": 0.1165
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 18.54
+    "inference_time_s": 20.91
   },
   "gnconv": {
     "name": "gnConv",
@@ -420,7 +428,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 18983012,
+      "param_str": "18.98M"
     },
     "config": {
       "name": "gnConv",
@@ -431,17 +441,17 @@
       "description": "Global/gated convolutions (HorNet-style)"
     },
     "metrics": {
-      "mAP_50_95": 0.2107,
-      "mAP_50": 0.352,
-      "mAP_75": 0.2161,
+      "mAP_50_95": 0.2105,
+      "mAP_50": 0.3515,
+      "mAP_75": 0.2156,
       "mAP_small": 0.1275,
-      "mAP_medium": 0.2983,
+      "mAP_medium": 0.2978,
       "mAP_large": 0.4288,
       "AR_1": 0.0983,
-      "AR_10": 0.2646,
-      "AR_100": 0.356,
+      "AR_10": 0.2642,
+      "AR_100": 0.3556,
       "AR_small": 0.2598,
-      "AR_medium": 0.4766,
+      "AR_medium": 0.4756,
       "AR_large": 0.609,
       "per_class_ap": {
         "pedestrian": {
@@ -454,10 +464,10 @@
         },
         "bicycle": {
           "AP_50": 0.3884,
-          "AP_50_95": 0.1501
+          "AP_50_95": 0.1502
         },
         "car": {
-          "AP_50": 0.1165,
+          "AP_50": 0.1166,
           "AP_50_95": 0.0492
         },
         "van": {
@@ -469,7 +479,7 @@
           "AP_50_95": 0.3223
         },
         "tricycle": {
-          "AP_50": 0.3298,
+          "AP_50": 0.3299,
           "AP_50_95": 0.2163
         },
         "awning-tricycle": {
@@ -477,17 +487,17 @@
           "AP_50_95": 0.133
         },
         "bus": {
-          "AP_50": 0.149,
-          "AP_50_95": 0.0919
+          "AP_50": 0.148,
+          "AP_50_95": 0.0917
         },
         "motor": {
-          "AP_50": 0.5424,
-          "AP_50_95": 0.3805
+          "AP_50": 0.5387,
+          "AP_50_95": 0.3786
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 33.51
+    "inference_time_s": 19.97
   },
   "p2_layer": {
     "name": "P2 Layer",
@@ -518,7 +528,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 21907332,
+      "param_str": "21.91M"
     },
     "config": {
       "name": "P2 Layer",
@@ -532,11 +544,11 @@
       "mAP_50_95": 0.2432,
       "mAP_50": 0.3912,
       "mAP_75": 0.2528,
-      "mAP_small": 0.1657,
+      "mAP_small": 0.1658,
       "mAP_medium": 0.3304,
       "mAP_large": 0.4283,
-      "AR_1": 0.1056,
-      "AR_10": 0.2964,
+      "AR_1": 0.1055,
+      "AR_10": 0.2965,
       "AR_100": 0.3959,
       "AR_small": 0.3158,
       "AR_medium": 0.4967,
@@ -552,15 +564,15 @@
         },
         "bicycle": {
           "AP_50": 0.4496,
-          "AP_50_95": 0.1845
+          "AP_50_95": 0.1846
         },
         "car": {
           "AP_50": 0.1521,
           "AP_50_95": 0.0698
         },
         "van": {
-          "AP_50": 0.843,
-          "AP_50_95": 0.6043
+          "AP_50": 0.8431,
+          "AP_50_95": 0.6047
         },
         "truck": {
           "AP_50": 0.5278,
@@ -585,7 +597,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 45.43
+    "inference_time_s": 22.21
   },
   "slim_p2_c": {
     "name": "SLIM P2 (Channel)",
@@ -616,7 +628,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 21083332,
+      "param_str": "21.08M"
     },
     "config": {
       "name": "SLIM P2 (Channel)",
@@ -632,11 +646,11 @@
       "mAP_75": 0.2446,
       "mAP_small": 0.1529,
       "mAP_medium": 0.3277,
-      "mAP_large": 0.4194,
+      "mAP_large": 0.4195,
       "AR_1": 0.1029,
       "AR_10": 0.2875,
       "AR_100": 0.3853,
-      "AR_small": 0.2936,
+      "AR_small": 0.2937,
       "AR_medium": 0.5001,
       "AR_large": 0.5638,
       "per_class_ap": {
@@ -645,7 +659,7 @@
           "AP_50_95": 0.0062
         },
         "people": {
-          "AP_50": 0.5127,
+          "AP_50": 0.5125,
           "AP_50_95": 0.2419
         },
         "bicycle": {
@@ -653,8 +667,8 @@
           "AP_50_95": 0.1743
         },
         "car": {
-          "AP_50": 0.1426,
-          "AP_50_95": 0.0676
+          "AP_50": 0.1427,
+          "AP_50_95": 0.0675
         },
         "van": {
           "AP_50": 0.8335,
@@ -662,28 +676,28 @@
         },
         "truck": {
           "AP_50": 0.5138,
-          "AP_50_95": 0.3613
+          "AP_50_95": 0.3614
         },
         "tricycle": {
           "AP_50": 0.353,
-          "AP_50_95": 0.2341
+          "AP_50_95": 0.234
         },
         "awning-tricycle": {
           "AP_50": 0.2675,
-          "AP_50_95": 0.1512
+          "AP_50_95": 0.1514
         },
         "bus": {
           "AP_50": 0.181,
           "AP_50_95": 0.1105
         },
         "motor": {
-          "AP_50": 0.5789,
-          "AP_50_95": 0.4203
+          "AP_50": 0.5791,
+          "AP_50_95": 0.4204
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 34.91
+    "inference_time_s": 28.66
   },
   "slim_p2_inc": {
     "name": "SLIM P2 (Inception)",
@@ -714,7 +728,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 32028304,
+      "param_str": "32.03M"
     },
     "config": {
       "name": "SLIM P2 (Inception)",
@@ -726,20 +742,20 @@
     },
     "metrics": {
       "mAP_50_95": 0.2558,
-      "mAP_50": 0.4166,
-      "mAP_75": 0.2607,
-      "mAP_small": 0.1759,
-      "mAP_medium": 0.3485,
-      "mAP_large": 0.4453,
+      "mAP_50": 0.4167,
+      "mAP_75": 0.2606,
+      "mAP_small": 0.176,
+      "mAP_medium": 0.3484,
+      "mAP_large": 0.4458,
       "AR_1": 0.1111,
-      "AR_10": 0.3049,
-      "AR_100": 0.4016,
-      "AR_small": 0.3177,
-      "AR_medium": 0.5078,
-      "AR_large": 0.6455,
+      "AR_10": 0.3047,
+      "AR_100": 0.4015,
+      "AR_small": 0.3176,
+      "AR_medium": 0.5076,
+      "AR_large": 0.6456,
       "per_class_ap": {
         "pedestrian": {
-          "AP_50": 0.0249,
+          "AP_50": 0.0248,
           "AP_50_95": 0.0063
         },
         "people": {
@@ -751,37 +767,37 @@
           "AP_50_95": 0.1923
         },
         "car": {
-          "AP_50": 0.1887,
+          "AP_50": 0.1886,
           "AP_50_95": 0.0891
         },
         "van": {
           "AP_50": 0.8524,
-          "AP_50_95": 0.603
+          "AP_50_95": 0.6031
         },
         "truck": {
-          "AP_50": 0.5374,
+          "AP_50": 0.5373,
           "AP_50_95": 0.3785
         },
         "tricycle": {
-          "AP_50": 0.3873,
-          "AP_50_95": 0.2563
+          "AP_50": 0.389,
+          "AP_50_95": 0.2565
         },
         "awning-tricycle": {
-          "AP_50": 0.3409,
-          "AP_50_95": 0.1929
+          "AP_50": 0.3399,
+          "AP_50_95": 0.1927
         },
         "bus": {
           "AP_50": 0.2131,
           "AP_50_95": 0.1275
         },
         "motor": {
-          "AP_50": 0.604,
+          "AP_50": 0.6041,
           "AP_50_95": 0.452
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 53.78
+    "inference_time_s": 26.8
   },
   "gnconv_p2": {
     "name": "gnConv + P2 (6-dec)",
@@ -812,7 +828,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 28076304,
+      "param_str": "28.08M"
     },
     "config": {
       "name": "gnConv + P2 (6-dec)",
@@ -823,29 +841,29 @@
       "description": "gnConv + P2 layer with 6 decoder layers"
     },
     "metrics": {
-      "mAP_50_95": 0.2638,
-      "mAP_50": 0.426,
-      "mAP_75": 0.2749,
-      "mAP_small": 0.182,
-      "mAP_medium": 0.3596,
-      "mAP_large": 0.4745,
-      "AR_1": 0.1144,
-      "AR_10": 0.3093,
-      "AR_100": 0.4078,
-      "AR_small": 0.3254,
+      "mAP_50_95": 0.2637,
+      "mAP_50": 0.4261,
+      "mAP_75": 0.275,
+      "mAP_small": 0.1818,
+      "mAP_medium": 0.3595,
+      "mAP_large": 0.4749,
+      "AR_1": 0.1143,
+      "AR_10": 0.309,
+      "AR_100": 0.4075,
+      "AR_small": 0.3249,
       "AR_medium": 0.5127,
-      "AR_large": 0.6394,
+      "AR_large": 0.6393,
       "per_class_ap": {
         "pedestrian": {
-          "AP_50": 0.0266,
-          "AP_50_95": 0.0064
+          "AP_50": 0.0265,
+          "AP_50_95": 0.0063
         },
         "people": {
-          "AP_50": 0.5489,
-          "AP_50_95": 0.267
+          "AP_50": 0.549,
+          "AP_50_95": 0.2671
         },
         "bicycle": {
-          "AP_50": 0.4564,
+          "AP_50": 0.4565,
           "AP_50_95": 0.186
         },
         "car": {
@@ -854,32 +872,32 @@
         },
         "van": {
           "AP_50": 0.8536,
-          "AP_50_95": 0.6064
+          "AP_50_95": 0.6063
         },
         "truck": {
-          "AP_50": 0.5516,
+          "AP_50": 0.5517,
           "AP_50_95": 0.3908
         },
         "tricycle": {
-          "AP_50": 0.427,
-          "AP_50_95": 0.285
+          "AP_50": 0.4272,
+          "AP_50_95": 0.2851
         },
         "awning-tricycle": {
           "AP_50": 0.3366,
           "AP_50_95": 0.1909
         },
         "bus": {
-          "AP_50": 0.2126,
+          "AP_50": 0.2125,
           "AP_50_95": 0.1347
         },
         "motor": {
-          "AP_50": 0.6634,
-          "AP_50_95": 0.4852
+          "AP_50": 0.6633,
+          "AP_50_95": 0.4843
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 170.73
+    "inference_time_s": 81.25
   },
   "gnconv_p2_crr": {
     "name": "gnConv + P2 (3-dec)",
@@ -910,7 +928,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 20560644,
+      "param_str": "20.56M"
     },
     "config": {
       "name": "gnConv + P2 (3-dec)",
@@ -921,18 +941,18 @@
       "description": "gnConv + P2 layer with 3 decoder layers (correct)"
     },
     "metrics": {
-      "mAP_50_95": 0.227,
-      "mAP_50": 0.3719,
+      "mAP_50_95": 0.2271,
+      "mAP_50": 0.372,
       "mAP_75": 0.2356,
       "mAP_small": 0.1484,
-      "mAP_medium": 0.3147,
-      "mAP_large": 0.4397,
+      "mAP_medium": 0.3149,
+      "mAP_large": 0.4395,
       "AR_1": 0.1021,
-      "AR_10": 0.2773,
-      "AR_100": 0.3722,
+      "AR_10": 0.2775,
+      "AR_100": 0.3724,
       "AR_small": 0.2852,
-      "AR_medium": 0.4782,
-      "AR_large": 0.603,
+      "AR_medium": 0.4783,
+      "AR_large": 0.6032,
       "per_class_ap": {
         "pedestrian": {
           "AP_50": 0.0243,
@@ -940,11 +960,11 @@
         },
         "people": {
           "AP_50": 0.4994,
-          "AP_50_95": 0.2308
+          "AP_50_95": 0.2309
         },
         "bicycle": {
-          "AP_50": 0.4238,
-          "AP_50_95": 0.1696
+          "AP_50": 0.4239,
+          "AP_50_95": 0.1697
         },
         "car": {
           "AP_50": 0.1279,
@@ -952,18 +972,18 @@
         },
         "van": {
           "AP_50": 0.8301,
-          "AP_50_95": 0.5753
+          "AP_50_95": 0.5752
         },
         "truck": {
           "AP_50": 0.5088,
-          "AP_50_95": 0.3505
+          "AP_50_95": 0.3506
         },
         "tricycle": {
           "AP_50": 0.339,
-          "AP_50_95": 0.2259
+          "AP_50_95": 0.2258
         },
         "awning-tricycle": {
-          "AP_50": 0.2666,
+          "AP_50": 0.2665,
           "AP_50_95": 0.1507
         },
         "bus": {
@@ -971,13 +991,13 @@
           "AP_50_95": 0.1013
         },
         "motor": {
-          "AP_50": 0.5362,
-          "AP_50_95": 0.3985
+          "AP_50": 0.5363,
+          "AP_50_95": 0.3992
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 65.45
+    "inference_time_s": 76.15
   },
   "gnconv_p2_repvgg": {
     "name": "gnConv + P2 + RepVGG (6-dec)",
@@ -1008,7 +1028,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 29050512,
+      "param_str": "29.05M"
     },
     "config": {
       "name": "gnConv + P2 + RepVGG (6-dec)",
@@ -1021,32 +1043,32 @@
     "metrics": {
       "mAP_50_95": 0.2664,
       "mAP_50": 0.4353,
-      "mAP_75": 0.276,
+      "mAP_75": 0.2759,
       "mAP_small": 0.1856,
       "mAP_medium": 0.3607,
-      "mAP_large": 0.5024,
+      "mAP_large": 0.5029,
       "AR_1": 0.1156,
-      "AR_10": 0.3103,
-      "AR_100": 0.4074,
-      "AR_small": 0.3246,
-      "AR_medium": 0.5146,
-      "AR_large": 0.642,
+      "AR_10": 0.3102,
+      "AR_100": 0.4073,
+      "AR_small": 0.3245,
+      "AR_medium": 0.5144,
+      "AR_large": 0.6438,
       "per_class_ap": {
         "pedestrian": {
-          "AP_50": 0.0257,
+          "AP_50": 0.0261,
           "AP_50_95": 0.006
         },
         "people": {
-          "AP_50": 0.562,
-          "AP_50_95": 0.2672
+          "AP_50": 0.5619,
+          "AP_50_95": 0.2673
         },
         "bicycle": {
           "AP_50": 0.4783,
-          "AP_50_95": 0.1944
+          "AP_50_95": 0.1945
         },
         "car": {
-          "AP_50": 0.214,
-          "AP_50_95": 0.0972
+          "AP_50": 0.2139,
+          "AP_50_95": 0.097
         },
         "van": {
           "AP_50": 0.8572,
@@ -1054,28 +1076,28 @@
         },
         "truck": {
           "AP_50": 0.5579,
-          "AP_50_95": 0.3938
+          "AP_50_95": 0.394
         },
         "tricycle": {
-          "AP_50": 0.4186,
-          "AP_50_95": 0.2765
+          "AP_50": 0.4185,
+          "AP_50_95": 0.2764
         },
         "awning-tricycle": {
-          "AP_50": 0.3333,
-          "AP_50_95": 0.186
+          "AP_50": 0.3331,
+          "AP_50_95": 0.1859
         },
         "bus": {
           "AP_50": 0.245,
           "AP_50_95": 0.1472
         },
         "motor": {
-          "AP_50": 0.6608,
+          "AP_50": 0.661,
           "AP_50_95": 0.4949
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 70.59
+    "inference_time_s": 56.38
   },
   "gnconv_p2_repvgg_crr": {
     "name": "gnConv + P2 + RepVGG (3-dec)",
@@ -1106,7 +1128,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 20785092,
+      "param_str": "20.79M"
     },
     "config": {
       "name": "gnConv + P2 + RepVGG (3-dec)",
@@ -1122,25 +1146,25 @@
       "mAP_75": 0.2377,
       "mAP_small": 0.1539,
       "mAP_medium": 0.3176,
-      "mAP_large": 0.4481,
+      "mAP_large": 0.448,
       "AR_1": 0.1015,
       "AR_10": 0.2854,
-      "AR_100": 0.3847,
-      "AR_small": 0.2979,
+      "AR_100": 0.3848,
+      "AR_small": 0.2981,
       "AR_medium": 0.4928,
       "AR_large": 0.6076,
       "per_class_ap": {
         "pedestrian": {
-          "AP_50": 0.0207,
+          "AP_50": 0.0206,
           "AP_50_95": 0.0054
         },
         "people": {
           "AP_50": 0.5193,
-          "AP_50_95": 0.2437
+          "AP_50_95": 0.2438
         },
         "bicycle": {
           "AP_50": 0.4324,
-          "AP_50_95": 0.174
+          "AP_50_95": 0.1739
         },
         "car": {
           "AP_50": 0.1242,
@@ -1151,29 +1175,29 @@
           "AP_50_95": 0.5836
         },
         "truck": {
-          "AP_50": 0.5141,
+          "AP_50": 0.5142,
           "AP_50_95": 0.3611
         },
         "tricycle": {
-          "AP_50": 0.3481,
-          "AP_50_95": 0.2367
+          "AP_50": 0.348,
+          "AP_50_95": 0.2366
         },
         "awning-tricycle": {
           "AP_50": 0.2677,
           "AP_50_95": 0.1497
         },
         "bus": {
-          "AP_50": 0.1749,
-          "AP_50_95": 0.1042
+          "AP_50": 0.175,
+          "AP_50_95": 0.1043
         },
         "motor": {
-          "AP_50": 0.5479,
+          "AP_50": 0.548,
           "AP_50_95": 0.4001
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 53.95
+    "inference_time_s": 35.58
   },
   "gnconv_slim_p2_repvgg": {
     "name": "gnConv + SLIM-P2 + RepVGG (6-dec)",
@@ -1204,7 +1228,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 27157264,
+      "param_str": "27.16M"
     },
     "config": {
       "name": "gnConv + SLIM-P2 + RepVGG (6-dec)",
@@ -1220,29 +1246,29 @@
       "mAP_75": 0.2588,
       "mAP_small": 0.1704,
       "mAP_medium": 0.3402,
-      "mAP_large": 0.4603,
+      "mAP_large": 0.4602,
       "AR_1": 0.1091,
       "AR_10": 0.2966,
       "AR_100": 0.3915,
       "AR_small": 0.3089,
       "AR_medium": 0.4957,
-      "AR_large": 0.5995,
+      "AR_large": 0.5994,
       "per_class_ap": {
         "pedestrian": {
-          "AP_50": 0.0247,
+          "AP_50": 0.0242,
           "AP_50_95": 0.0086
         },
         "people": {
-          "AP_50": 0.5433,
+          "AP_50": 0.5432,
           "AP_50_95": 0.255
         },
         "bicycle": {
-          "AP_50": 0.4652,
+          "AP_50": 0.4651,
           "AP_50_95": 0.1888
         },
         "car": {
-          "AP_50": 0.1725,
-          "AP_50_95": 0.0809
+          "AP_50": 0.1724,
+          "AP_50_95": 0.0808
         },
         "van": {
           "AP_50": 0.844,
@@ -1257,12 +1283,12 @@
           "AP_50_95": 0.2465
         },
         "awning-tricycle": {
-          "AP_50": 0.3152,
-          "AP_50_95": 0.1742
+          "AP_50": 0.3163,
+          "AP_50_95": 0.1744
         },
         "bus": {
-          "AP_50": 0.1962,
-          "AP_50_95": 0.1181
+          "AP_50": 0.1959,
+          "AP_50_95": 0.1178
         },
         "motor": {
           "AP_50": 0.6133,
@@ -1271,7 +1297,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 56.94
+    "inference_time_s": 62.5
   },
   "gnconv_slim_p2_repvgg_crr": {
     "name": "gnConv + SLIM-P2 + RepVGG (3-dec)",
@@ -1302,7 +1328,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 19961092,
+      "param_str": "19.96M"
     },
     "config": {
       "name": "gnConv + SLIM-P2 + RepVGG (3-dec)",
@@ -1318,12 +1346,12 @@
       "mAP_75": 0.2343,
       "mAP_small": 0.1469,
       "mAP_medium": 0.3117,
-      "mAP_large": 0.4236,
-      "AR_1": 0.1,
+      "mAP_large": 0.4235,
+      "AR_1": 0.1002,
       "AR_10": 0.278,
-      "AR_100": 0.3745,
-      "AR_small": 0.2891,
-      "AR_medium": 0.4817,
+      "AR_100": 0.3744,
+      "AR_small": 0.2889,
+      "AR_medium": 0.4816,
       "AR_large": 0.5883,
       "per_class_ap": {
         "pedestrian": {
@@ -1332,14 +1360,14 @@
         },
         "people": {
           "AP_50": 0.4979,
-          "AP_50_95": 0.2294
+          "AP_50_95": 0.2295
         },
         "bicycle": {
           "AP_50": 0.4175,
-          "AP_50_95": 0.1695
+          "AP_50_95": 0.1694
         },
         "car": {
-          "AP_50": 0.1167,
+          "AP_50": 0.1166,
           "AP_50_95": 0.0525
         },
         "van": {
@@ -1347,20 +1375,20 @@
           "AP_50_95": 0.5752
         },
         "truck": {
-          "AP_50": 0.5081,
+          "AP_50": 0.508,
           "AP_50_95": 0.353
         },
         "tricycle": {
-          "AP_50": 0.3302,
-          "AP_50_95": 0.2176
+          "AP_50": 0.3301,
+          "AP_50_95": 0.2175
         },
         "awning-tricycle": {
-          "AP_50": 0.2577,
+          "AP_50": 0.2576,
           "AP_50_95": 0.1427
         },
         "bus": {
           "AP_50": 0.1687,
-          "AP_50_95": 0.1035
+          "AP_50_95": 0.1034
         },
         "motor": {
           "AP_50": 0.5528,
@@ -1369,7 +1397,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 58.33
+    "inference_time_s": 31.01
   },
   "gnconv_p2_integrated": {
     "name": "(gnConV+P2) Integrated",
@@ -1400,7 +1428,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 21682884,
+      "param_str": "21.68M"
     },
     "config": {
       "name": "(gnConV+P2) Integrated",
@@ -1412,16 +1442,16 @@
     },
     "metrics": {
       "mAP_50_95": 0.2376,
-      "mAP_50": 0.3888,
-      "mAP_75": 0.246,
+      "mAP_50": 0.3887,
+      "mAP_75": 0.2459,
       "mAP_small": 0.1535,
-      "mAP_medium": 0.3373,
-      "mAP_large": 0.4426,
+      "mAP_medium": 0.3372,
+      "mAP_large": 0.4418,
       "AR_1": 0.1048,
       "AR_10": 0.2894,
       "AR_100": 0.3831,
-      "AR_small": 0.2904,
-      "AR_medium": 0.5022,
+      "AR_small": 0.2905,
+      "AR_medium": 0.5021,
       "AR_large": 0.6,
       "per_class_ap": {
         "pedestrian": {
@@ -1430,10 +1460,10 @@
         },
         "people": {
           "AP_50": 0.5112,
-          "AP_50_95": 0.2386
+          "AP_50_95": 0.2385
         },
         "bicycle": {
-          "AP_50": 0.427,
+          "AP_50": 0.4269,
           "AP_50_95": 0.1731
         },
         "car": {
@@ -1445,7 +1475,7 @@
           "AP_50_95": 0.582
         },
         "truck": {
-          "AP_50": 0.5168,
+          "AP_50": 0.5167,
           "AP_50_95": 0.3631
         },
         "tricycle": {
@@ -1461,13 +1491,13 @@
           "AP_50_95": 0.112
         },
         "motor": {
-          "AP_50": 0.5977,
-          "AP_50_95": 0.4407
+          "AP_50": 0.5971,
+          "AP_50_95": 0.4406
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 52.54
+    "inference_time_s": 33.92
   },
   "gnconv_slim_p2_integrated": {
     "name": "(gnConv+SLIM-P2) Integrated",
@@ -1498,7 +1528,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 21036772,
+      "param_str": "21.04M"
     },
     "config": {
       "name": "(gnConv+SLIM-P2) Integrated",
@@ -1511,12 +1543,12 @@
     "metrics": {
       "mAP_50_95": 0.2353,
       "mAP_50": 0.3859,
-      "mAP_75": 0.2455,
+      "mAP_75": 0.2457,
       "mAP_small": 0.1505,
       "mAP_medium": 0.3321,
       "mAP_large": 0.4257,
       "AR_1": 0.1038,
-      "AR_10": 0.2877,
+      "AR_10": 0.2878,
       "AR_100": 0.3846,
       "AR_small": 0.2935,
       "AR_medium": 0.501,
@@ -1527,45 +1559,45 @@
           "AP_50_95": 0.0049
         },
         "people": {
-          "AP_50": 0.5141,
-          "AP_50_95": 0.239
+          "AP_50": 0.5142,
+          "AP_50_95": 0.2391
         },
         "bicycle": {
           "AP_50": 0.4339,
           "AP_50_95": 0.1779
         },
         "car": {
-          "AP_50": 0.1452,
-          "AP_50_95": 0.0652
+          "AP_50": 0.1451,
+          "AP_50_95": 0.0654
         },
         "van": {
           "AP_50": 0.8391,
           "AP_50_95": 0.584
         },
         "truck": {
-          "AP_50": 0.5103,
-          "AP_50_95": 0.3577
+          "AP_50": 0.5104,
+          "AP_50_95": 0.3576
         },
         "tricycle": {
           "AP_50": 0.357,
-          "AP_50_95": 0.237
+          "AP_50_95": 0.2369
         },
         "awning-tricycle": {
           "AP_50": 0.2797,
-          "AP_50_95": 0.1517
+          "AP_50_95": 0.1518
         },
         "bus": {
-          "AP_50": 0.1844,
-          "AP_50_95": 0.1109
+          "AP_50": 0.1845,
+          "AP_50_95": 0.111
         },
         "motor": {
           "AP_50": 0.5745,
-          "AP_50_95": 0.4247
+          "AP_50_95": 0.4246
         }
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 36.23
+    "inference_time_s": 25.24
   },
   "efficientnet_b2": {
     "name": "EfficientNet-B2",
@@ -1596,7 +1628,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 15754766,
+      "param_str": "15.75M"
     },
     "config": {
       "name": "EfficientNet-B2",
@@ -1611,13 +1645,13 @@
       "mAP_50": 0.3798,
       "mAP_75": 0.2292,
       "mAP_small": 0.139,
-      "mAP_medium": 0.3213,
+      "mAP_medium": 0.3212,
       "mAP_large": 0.4871,
       "AR_1": 0.1007,
-      "AR_10": 0.2818,
-      "AR_100": 0.3765,
+      "AR_10": 0.2817,
+      "AR_100": 0.3766,
       "AR_small": 0.2809,
-      "AR_medium": 0.5006,
+      "AR_medium": 0.5005,
       "AR_large": 0.634,
       "per_class_ap": {
         "pedestrian": {
@@ -1629,11 +1663,11 @@
           "AP_50_95": 0.2109
         },
         "bicycle": {
-          "AP_50": 0.4207,
-          "AP_50_95": 0.166
+          "AP_50": 0.4205,
+          "AP_50_95": 0.1659
         },
         "car": {
-          "AP_50": 0.1677,
+          "AP_50": 0.1679,
           "AP_50_95": 0.072
         },
         "van": {
@@ -1646,14 +1680,14 @@
         },
         "tricycle": {
           "AP_50": 0.3736,
-          "AP_50_95": 0.2411
+          "AP_50_95": 0.2412
         },
         "awning-tricycle": {
-          "AP_50": 0.3054,
-          "AP_50_95": 0.1654
+          "AP_50": 0.3049,
+          "AP_50_95": 0.1651
         },
         "bus": {
-          "AP_50": 0.1708,
+          "AP_50": 0.1707,
           "AP_50_95": 0.1027
         },
         "motor": {
@@ -1663,7 +1697,7 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 33.99
+    "inference_time_s": 14.51
   },
   "efficientnet_b2_p2": {
     "name": "EfficientNet-B2 + P2",
@@ -1694,7 +1728,9 @@
       "providers": [
         "CUDAExecutionProvider",
         "CPUExecutionProvider"
-      ]
+      ],
+      "total_params": 17771054,
+      "param_str": "17.77M"
     },
     "config": {
       "name": "EfficientNet-B2 + P2",
@@ -1761,6 +1797,6 @@
       }
     },
     "num_predictions": 164400,
-    "inference_time_s": 36.89
+    "inference_time_s": 24.82
   }
 }
