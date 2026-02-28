@@ -1,0 +1,98 @@
+{
+  "name": "Query Importance",
+  "model_info": {
+    "model_path": "D:\\Final Testing\\Checkpoints - After improvements/2-Query IMP/model (1).onnx",
+    "file_size_mb": 76.74,
+    "input_names": [
+      "images",
+      "orig_target_sizes"
+    ],
+    "input_shape": "['N', 3, 640, 640]",
+    "input_size": [
+      640,
+      640
+    ],
+    "needs_orig_size": true,
+    "output_names": [
+      "labels",
+      "boxes",
+      "scores"
+    ],
+    "output_shapes": [
+      "['Modlabels_dim_0', 'Modlabels_dim_1']",
+      "['GatherElementsboxes_dim_0', 'GatherElementsboxes_dim_1', 'GatherElementsboxes_dim_2']",
+      "['TopKscores_dim_0', 'TopKscores_dim_1']"
+    ],
+    "output_format": "paddle_postprocessed",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "config": {
+    "name": "Query Importance",
+    "path": "Checkpoints - After improvements/2-Query IMP/model (1).onnx",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "decoder",
+    "description": "Improved query selection mechanism"
+  },
+  "metrics": {
+    "mAP_50_95": 0.2201,
+    "mAP_50": 0.3638,
+    "mAP_75": 0.2246,
+    "mAP_small": 0.1327,
+    "mAP_medium": 0.3118,
+    "mAP_large": 0.4243,
+    "AR_1": 0.0991,
+    "AR_10": 0.2764,
+    "AR_100": 0.3701,
+    "AR_small": 0.274,
+    "AR_medium": 0.4934,
+    "AR_large": 0.5672,
+    "per_class_ap": {
+      "pedestrian": {
+        "AP_50": 0.0268,
+        "AP_50_95": 0.0066
+      },
+      "people": {
+        "AP_50": 0.4566,
+        "AP_50_95": 0.2103
+      },
+      "bicycle": {
+        "AP_50": 0.4029,
+        "AP_50_95": 0.1592
+      },
+      "car": {
+        "AP_50": 0.1287,
+        "AP_50_95": 0.0541
+      },
+      "van": {
+        "AP_50": 0.8127,
+        "AP_50_95": 0.5669
+      },
+      "truck": {
+        "AP_50": 0.4833,
+        "AP_50_95": 0.3383
+      },
+      "tricycle": {
+        "AP_50": 0.3464,
+        "AP_50_95": 0.2286
+      },
+      "awning-tricycle": {
+        "AP_50": 0.2602,
+        "AP_50_95": 0.1406
+      },
+      "bus": {
+        "AP_50": 0.1664,
+        "AP_50_95": 0.1016
+      },
+      "motor": {
+        "AP_50": 0.5541,
+        "AP_50_95": 0.3953
+      }
+    }
+  },
+  "num_predictions": 164400,
+  "inference_time_s": 12.75
+}

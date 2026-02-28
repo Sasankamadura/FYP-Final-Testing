@@ -1,0 +1,98 @@
+{
+  "name": "SLIM P2 (Inception)",
+  "model_info": {
+    "model_path": "D:\\Final Testing\\Checkpoints - After improvements/6_1 - SLIM p2 layer INC/model (2).onnx",
+    "file_size_mb": 123.87,
+    "input_names": [
+      "images",
+      "orig_target_sizes"
+    ],
+    "input_shape": "['N', 3, 640, 640]",
+    "input_size": [
+      640,
+      640
+    ],
+    "needs_orig_size": true,
+    "output_names": [
+      "labels",
+      "boxes",
+      "scores"
+    ],
+    "output_shapes": [
+      "['Modlabels_dim_0', 'Modlabels_dim_1']",
+      "['GatherElementsboxes_dim_0', 'GatherElementsboxes_dim_1', 'GatherElementsboxes_dim_2']",
+      "['TopKscores_dim_0', 'TopKscores_dim_1']"
+    ],
+    "output_format": "paddle_postprocessed",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "config": {
+    "name": "SLIM P2 (Inception)",
+    "path": "Checkpoints - After improvements/6_1 - SLIM p2 layer INC/model (2).onnx",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "description": "Slim P2 layer - inception variant"
+  },
+  "metrics": {
+    "mAP_50_95": 0.2558,
+    "mAP_50": 0.4166,
+    "mAP_75": 0.2607,
+    "mAP_small": 0.1759,
+    "mAP_medium": 0.3485,
+    "mAP_large": 0.4453,
+    "AR_1": 0.1111,
+    "AR_10": 0.3049,
+    "AR_100": 0.4016,
+    "AR_small": 0.3177,
+    "AR_medium": 0.5078,
+    "AR_large": 0.6455,
+    "per_class_ap": {
+      "pedestrian": {
+        "AP_50": 0.0249,
+        "AP_50_95": 0.0063
+      },
+      "people": {
+        "AP_50": 0.5487,
+        "AP_50_95": 0.2603
+      },
+      "bicycle": {
+        "AP_50": 0.469,
+        "AP_50_95": 0.1923
+      },
+      "car": {
+        "AP_50": 0.1887,
+        "AP_50_95": 0.0891
+      },
+      "van": {
+        "AP_50": 0.8524,
+        "AP_50_95": 0.603
+      },
+      "truck": {
+        "AP_50": 0.5374,
+        "AP_50_95": 0.3785
+      },
+      "tricycle": {
+        "AP_50": 0.3873,
+        "AP_50_95": 0.2563
+      },
+      "awning-tricycle": {
+        "AP_50": 0.3409,
+        "AP_50_95": 0.1929
+      },
+      "bus": {
+        "AP_50": 0.2131,
+        "AP_50_95": 0.1275
+      },
+      "motor": {
+        "AP_50": 0.604,
+        "AP_50_95": 0.452
+      }
+    }
+  },
+  "num_predictions": 164400,
+  "inference_time_s": 53.78
+}

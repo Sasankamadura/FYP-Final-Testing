@@ -1,0 +1,98 @@
+{
+  "name": "gnConv + P2 + RepVGG (3-dec)",
+  "model_info": {
+    "model_path": "D:\\Final Testing\\Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg CRR/model (2).onnx",
+    "file_size_mb": 80.84,
+    "input_names": [
+      "images",
+      "orig_target_sizes"
+    ],
+    "input_shape": "['N', 3, 640, 640]",
+    "input_size": [
+      640,
+      640
+    ],
+    "needs_orig_size": true,
+    "output_names": [
+      "labels",
+      "boxes",
+      "scores"
+    ],
+    "output_shapes": [
+      "['Modlabels_dim_0', 'Modlabels_dim_1']",
+      "['GatherElementsboxes_dim_0', 'GatherElementsboxes_dim_1', 'GatherElementsboxes_dim_2']",
+      "['TopKscores_dim_0', 'TopKscores_dim_1']"
+    ],
+    "output_format": "paddle_postprocessed",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "config": {
+    "name": "gnConv + P2 + RepVGG (3-dec)",
+    "path": "Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg CRR/model (2).onnx",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "combined",
+    "description": "gnConv + P2 + RepVGG with 3 decoder layers (correct)"
+  },
+  "metrics": {
+    "mAP_50_95": 0.2314,
+    "mAP_50": 0.3789,
+    "mAP_75": 0.2377,
+    "mAP_small": 0.1539,
+    "mAP_medium": 0.3176,
+    "mAP_large": 0.4481,
+    "AR_1": 0.1015,
+    "AR_10": 0.2854,
+    "AR_100": 0.3847,
+    "AR_small": 0.2979,
+    "AR_medium": 0.4928,
+    "AR_large": 0.6076,
+    "per_class_ap": {
+      "pedestrian": {
+        "AP_50": 0.0207,
+        "AP_50_95": 0.0054
+      },
+      "people": {
+        "AP_50": 0.5193,
+        "AP_50_95": 0.2437
+      },
+      "bicycle": {
+        "AP_50": 0.4324,
+        "AP_50_95": 0.174
+      },
+      "car": {
+        "AP_50": 0.1242,
+        "AP_50_95": 0.0558
+      },
+      "van": {
+        "AP_50": 0.8393,
+        "AP_50_95": 0.5836
+      },
+      "truck": {
+        "AP_50": 0.5141,
+        "AP_50_95": 0.3611
+      },
+      "tricycle": {
+        "AP_50": 0.3481,
+        "AP_50_95": 0.2367
+      },
+      "awning-tricycle": {
+        "AP_50": 0.2677,
+        "AP_50_95": 0.1497
+      },
+      "bus": {
+        "AP_50": 0.1749,
+        "AP_50_95": 0.1042
+      },
+      "motor": {
+        "AP_50": 0.5479,
+        "AP_50_95": 0.4001
+      }
+    }
+  },
+  "num_predictions": 164400,
+  "inference_time_s": 53.95
+}

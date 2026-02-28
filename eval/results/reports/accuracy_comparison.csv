@@ -1,0 +1,19 @@
+model_key,model_name,decoder_layers,mAP_50,mAP_50_95,mAP_75,mAP_small,mAP_medium,mAP_large,AR_100,delta_mAP_50
+baseline_rtdetr_r18,RT-DETR R18 Baseline,3,0.3556,0.2153,0.2214,0.1318,0.3073,0.4315,0.3624,0.0
+p2p3_fusion,P2-P3 Fusion,6,0.3966,0.2434,0.2488,0.1598,0.3351,0.4456,0.3953,0.041
+query_imp,Query Importance,6,0.3638,0.2201,0.2246,0.1327,0.3118,0.4243,0.3701,0.0082
+aware_loss,Aware Loss Reweighting,6,0.1841,0.1031,0.1018,0.0823,0.1709,0.1647,0.2701,-0.1715
+gnconv,gnConv,6,0.352,0.2107,0.2161,0.1275,0.2983,0.4288,0.356,-0.0036
+p2_layer,P2 Layer,6,0.3912,0.2432,0.2528,0.1657,0.3304,0.4283,0.3959,0.0356
+slim_p2_c,SLIM P2 (Channel),6,0.3834,0.235,0.2446,0.1529,0.3277,0.4194,0.3853,0.0278
+slim_p2_inc,SLIM P2 (Inception),6,0.4166,0.2558,0.2607,0.1759,0.3485,0.4453,0.4016,0.061
+gnconv_p2,gnConv + P2 (6-dec),6,0.426,0.2638,0.2749,0.182,0.3596,0.4745,0.4078,0.0704
+gnconv_p2_crr,gnConv + P2 (3-dec),3,0.3719,0.227,0.2356,0.1484,0.3147,0.4397,0.3722,0.0163
+gnconv_p2_repvgg,gnConv + P2 + RepVGG (6-dec),6,0.4353,0.2664,0.276,0.1856,0.3607,0.5024,0.4074,0.0797
+gnconv_p2_repvgg_crr,gnConv + P2 + RepVGG (3-dec),3,0.3789,0.2314,0.2377,0.1539,0.3176,0.4481,0.3847,0.0233
+gnconv_slim_p2_repvgg,gnConv + SLIM-P2 + RepVGG (6-dec),6,0.4088,0.2494,0.2588,0.1704,0.3402,0.4603,0.3915,0.0532
+gnconv_slim_p2_repvgg_crr,gnConv + SLIM-P2 + RepVGG (3-dec),3,0.3697,0.2256,0.2343,0.1469,0.3117,0.4236,0.3745,0.0141
+gnconv_p2_integrated,(gnConV+P2) Integrated,6,0.3888,0.2376,0.246,0.1535,0.3373,0.4426,0.3831,0.0332
+gnconv_slim_p2_integrated,(gnConv+SLIM-P2) Integrated,6,0.3859,0.2353,0.2455,0.1505,0.3321,0.4257,0.3846,0.0303
+efficientnet_b2,EfficientNet-B2,6,0.3798,0.226,0.2292,0.139,0.3213,0.4871,0.3765,0.0242
+efficientnet_b2_p2,EfficientNet-B2 + P2,6,0.4214,0.2592,0.2689,0.1795,0.3488,0.4862,0.4189,0.0658

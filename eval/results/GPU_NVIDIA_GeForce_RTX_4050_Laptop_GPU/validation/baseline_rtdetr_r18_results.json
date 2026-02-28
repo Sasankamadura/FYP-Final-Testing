@@ -1,0 +1,98 @@
+{
+  "name": "RT-DETR R18 Baseline",
+  "model_info": {
+    "model_path": "D:\\Final Testing\\Checkpoints - Baseline_Visdrone2019/RT-DETR Resnet 18/base_rtdetr.onnx",
+    "file_size_mb": 76.74,
+    "input_names": [
+      "images",
+      "orig_target_sizes"
+    ],
+    "input_shape": "['N', 3, 640, 640]",
+    "input_size": [
+      640,
+      640
+    ],
+    "needs_orig_size": true,
+    "output_names": [
+      "labels",
+      "boxes",
+      "scores"
+    ],
+    "output_shapes": [
+      "['Modlabels_dim_0', 'Modlabels_dim_1']",
+      "['GatherElementsboxes_dim_0', 'GatherElementsboxes_dim_1', 'GatherElementsboxes_dim_2']",
+      "['TopKscores_dim_0', 'TopKscores_dim_1']"
+    ],
+    "output_format": "paddle_postprocessed",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "config": {
+    "name": "RT-DETR R18 Baseline",
+    "path": "Checkpoints - Baseline_Visdrone2019/RT-DETR Resnet 18/base_rtdetr.onnx",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "category": "baseline",
+    "description": "Baseline RT-DETR with ResNet-18 backbone"
+  },
+  "metrics": {
+    "mAP_50_95": 0.2153,
+    "mAP_50": 0.3556,
+    "mAP_75": 0.2214,
+    "mAP_small": 0.1318,
+    "mAP_medium": 0.3073,
+    "mAP_large": 0.4315,
+    "AR_1": 0.0956,
+    "AR_10": 0.2687,
+    "AR_100": 0.3624,
+    "AR_small": 0.2673,
+    "AR_medium": 0.4818,
+    "AR_large": 0.5737,
+    "per_class_ap": {
+      "pedestrian": {
+        "AP_50": 0.0155,
+        "AP_50_95": 0.0034
+      },
+      "people": {
+        "AP_50": 0.4658,
+        "AP_50_95": 0.2129
+      },
+      "bicycle": {
+        "AP_50": 0.3946,
+        "AP_50_95": 0.1502
+      },
+      "car": {
+        "AP_50": 0.1152,
+        "AP_50_95": 0.0488
+      },
+      "van": {
+        "AP_50": 0.818,
+        "AP_50_95": 0.5684
+      },
+      "truck": {
+        "AP_50": 0.4753,
+        "AP_50_95": 0.3342
+      },
+      "tricycle": {
+        "AP_50": 0.3343,
+        "AP_50_95": 0.2211
+      },
+      "awning-tricycle": {
+        "AP_50": 0.2544,
+        "AP_50_95": 0.1377
+      },
+      "bus": {
+        "AP_50": 0.149,
+        "AP_50_95": 0.0953
+      },
+      "motor": {
+        "AP_50": 0.5341,
+        "AP_50_95": 0.3805
+      }
+    }
+  },
+  "num_predictions": 164400,
+  "inference_time_s": 17.03
+}

@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-02-28T12:22:30.843126",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "python_version": "3.12.10",
+  "processor": "Intel64 Family 6 Model 183 Stepping 1, GenuineIntel",
+  "gpu_name": "NVIDIA GeForce RTX 4050 Laptop GPU",
+  "gpu_count": 1,
+  "gpu_memory_total_mb": 6141,
+  "cuda_version": "13.0",
+  "cudnn_version": "N/A",
+  "driver_version": "581.86",
+  "onnxruntime_version": "1.23.2",
+  "onnxruntime_providers": [
+    "TensorrtExecutionProvider",
+    "CUDAExecutionProvider",
+    "CPUExecutionProvider"
+  ]
+}

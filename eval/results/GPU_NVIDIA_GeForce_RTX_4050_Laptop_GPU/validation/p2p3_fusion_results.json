@@ -1,0 +1,98 @@
+{
+  "name": "P2-P3 Fusion",
+  "model_info": {
+    "model_path": "D:\\Final Testing\\Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx",
+    "file_size_mb": 85.78,
+    "input_names": [
+      "images",
+      "orig_target_sizes"
+    ],
+    "input_shape": "['N', 3, 640, 640]",
+    "input_size": [
+      640,
+      640
+    ],
+    "needs_orig_size": true,
+    "output_names": [
+      "labels",
+      "boxes",
+      "scores"
+    ],
+    "output_shapes": [
+      "['Modlabels_dim_0', 'Modlabels_dim_1']",
+      "['GatherElementsboxes_dim_0', 'GatherElementsboxes_dim_1', 'GatherElementsboxes_dim_2']",
+      "['TopKscores_dim_0', 'TopKscores_dim_1']"
+    ],
+    "output_format": "paddle_postprocessed",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  },
+  "config": {
+    "name": "P2-P3 Fusion",
+    "path": "Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx",
+    "decoder_layers": 6,
+    "backbone": "ResNet-18",
+    "category": "neck",
+    "description": "P2-P3 feature fusion in neck"
+  },
+  "metrics": {
+    "mAP_50_95": 0.2434,
+    "mAP_50": 0.3966,
+    "mAP_75": 0.2488,
+    "mAP_small": 0.1598,
+    "mAP_medium": 0.3351,
+    "mAP_large": 0.4456,
+    "AR_1": 0.1071,
+    "AR_10": 0.2943,
+    "AR_100": 0.3953,
+    "AR_small": 0.3065,
+    "AR_medium": 0.5079,
+    "AR_large": 0.5789,
+    "per_class_ap": {
+      "pedestrian": {
+        "AP_50": 0.0213,
+        "AP_50_95": 0.005
+      },
+      "people": {
+        "AP_50": 0.5368,
+        "AP_50_95": 0.2527
+      },
+      "bicycle": {
+        "AP_50": 0.4481,
+        "AP_50_95": 0.1815
+      },
+      "car": {
+        "AP_50": 0.1541,
+        "AP_50_95": 0.0711
+      },
+      "van": {
+        "AP_50": 0.8365,
+        "AP_50_95": 0.5935
+      },
+      "truck": {
+        "AP_50": 0.5166,
+        "AP_50_95": 0.3644
+      },
+      "tricycle": {
+        "AP_50": 0.3684,
+        "AP_50_95": 0.2488
+      },
+      "awning-tricycle": {
+        "AP_50": 0.2963,
+        "AP_50_95": 0.1644
+      },
+      "bus": {
+        "AP_50": 0.1694,
+        "AP_50_95": 0.1028
+      },
+      "motor": {
+        "AP_50": 0.6179,
+        "AP_50_95": 0.4498
+      }
+    }
+  },
+  "num_predictions": 164400,
+  "inference_time_s": 16.07
+}

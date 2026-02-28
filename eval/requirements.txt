@@ -1,0 +1,18 @@
+# VisDrone2019 RT-DETR Evaluation Pipeline - Dependencies
+# Install: pip install -r requirements.txt
+
+# Core
+numpy>=1.24.0
+opencv-python>=4.8.0
+onnxruntime-gpu>=1.16.0
+PyYAML>=6.0
+
+# COCO evaluation
+pycocotools>=2.0.7
+
+# Reporting & visualization
+matplotlib>=3.7.0
+pandas>=2.0.0
+
+# Optional: for enhanced GPU info
+# torch>=2.0.0  # uncomment if you want cuDNN version detection
