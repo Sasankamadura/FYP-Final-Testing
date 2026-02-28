@@ -38,17 +38,18 @@ def load_config(config_path):
 def build_category_mapping(coco_data):
     """Build mapping from model output label to COCO category ID.
 
-    PaddleDetection RT-DETR ONNX exports produce 1-based labels (1–N).
-    After fixing the COCO annotations (removed 'ignored regions', remapped
-    cat_ids to 1–9), model labels map directly: label N → cat_id N.
+    PaddleDetection RT-DETR ONNX exports add +1 to internal 0-based class
+    indices, producing labels 1–N. VisDrone annotations use cat_ids 1–10.
+    Empirically verified: model_label N → cat_id N+1.
 
-    Model label 10 (motor) has no GT annotations and is ignored by
-    pycocotools during evaluation.
+    The original 0-based mapping {0→1, 1→2, ..., 9→10} handles this
+    correctly because model labels 1–9 look up keys 1–9 and get cat_ids 2–10.
+    Label 0 (pedestrian) is never produced at meaningful confidence.
     """
     categories = sorted(coco_data["categories"], key=lambda x: x["id"])
     mapping = {}
-    for cat in categories:
-        mapping[cat["id"]] = cat["id"]  # identity: 1→1, 2→2, ..., 9→9
+    for idx, cat in enumerate(categories):
+        mapping[idx] = cat["id"]  # 0→1, 1→2, ..., 9→10
     return mapping
 
 
@@ -175,23 +176,19 @@ def run_coco_evaluation(coco_data, predictions, output_dir, model_key):
     cat_names = [c["name"] for c in coco_gt.loadCats(cat_ids)]
 
     for cat_id, cat_name in zip(cat_ids, cat_names):
-        try:
-            coco_eval_cls = COCOeval(coco_gt, coco_dt, "bbox")
-            coco_eval_cls.params.catIds = [cat_id]
-            coco_eval_cls.evaluate()
-            coco_eval_cls.accumulate()
-            # Suppress per-class printout
-            import io, contextlib
-            with contextlib.redirect_stdout(io.StringIO()):
-                coco_eval_cls.summarize()
+        coco_eval_cls = COCOeval(coco_gt, coco_dt, "bbox")
+        coco_eval_cls.params.catIds = [cat_id]
+        coco_eval_cls.evaluate()
+        coco_eval_cls.accumulate()
+        # Suppress per-class printout
+        import io, contextlib
+        with contextlib.redirect_stdout(io.StringIO()):
+            coco_eval_cls.summarize()
 
-            per_class_ap[cat_name] = {
-                "AP_50": round(float(coco_eval_cls.stats[1]), 4),
-                "AP_50_95": round(float(coco_eval_cls.stats[0]), 4),
-            }
-        except Exception as e:
-            print(f"  [WARN] Per-class eval failed for {cat_name}: {e}")
-            per_class_ap[cat_name] = {"AP_50": -1.0, "AP_50_95": -1.0}
+        per_class_ap[cat_name] = {
+            "AP_50": round(float(coco_eval_cls.stats[1]), 4),
+            "AP_50_95": round(float(coco_eval_cls.stats[0]), 4),
+        }
 
     results["per_class_ap"] = per_class_ap
 
@@ -357,8 +354,6 @@ def main():
             result_file = os.path.join(output_dir, f"{model_key}_results.json")
             with open(result_file, "w") as f:
                 json.dump(all_results[model_key], f, indent=2)
-            # Force flush to disk
-            import gc; gc.collect()
 
             print(
                 f"  >> mAP@50: {metrics['mAP_50']:.4f} | "
