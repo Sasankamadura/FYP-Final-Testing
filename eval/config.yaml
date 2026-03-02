@@ -35,7 +35,7 @@ models:
   # --- Baseline ---
   baseline_rtdetr_r18:
     name: "RT-DETR R18 Baseline"
-    path: "Checkpoints - Baseline_Visdrone2019/RT-DETR Resnet 18/base_rtdetr.onnx"
+    path: "Experiments/Checkpoints - Baseline_Visdrone2019/RT-DETR Resnet 18/base_rtdetr.onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "baseline"
@@ -44,7 +44,7 @@ models:
   # --- Improvement 1: P2-P3 Fusion ---
   p2p3_fusion:
     name: "P2-P3 Fusion"
-    path: "Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx"
+    path: "Experiments/Checkpoints - After improvements/1-P2-P3 fusion/model_p2p3_F.onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "neck"
@@ -53,7 +53,7 @@ models:
   # --- Improvement 2: Query Importance ---
   query_imp:
     name: "Query Importance"
-    path: "Checkpoints - After improvements/2-Query IMP/model (1).onnx"
+    path: "Experiments/Checkpoints - After improvements/2-Query IMP/model (1).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "decoder"
@@ -62,7 +62,7 @@ models:
   # --- Improvement 3: Aware Loss Reweighting ---
   aware_loss:
     name: "Aware Loss Reweighting"
-    path: "Checkpoints - After improvements/3- Aware Loss Reweighting/model (1).onnx"
+    path: "Experiments/Checkpoints - After improvements/3- Aware Loss Reweighting/model (1).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "training"
@@ -71,7 +71,7 @@ models:
   # --- Improvement 5: gnconv ---
   gnconv:
     name: "gnConv"
-    path: "Checkpoints - After improvements/5 - gnconv/model (1).onnx"
+    path: "Experiments/Checkpoints - After improvements/5 - gnconv/model (1).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "backbone"
@@ -80,7 +80,7 @@ models:
   # --- Improvement 6: P2 Layer ---
   p2_layer:
     name: "P2 Layer"
-    path: "Checkpoints - After improvements/6 - p2 layer/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/6 - p2 layer/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "neck"
@@ -89,7 +89,7 @@ models:
   # --- Improvement 6_1: SLIM P2 Layer (Channel-reduced) ---
   slim_p2_c:
     name: "SLIM P2 (Channel)"
-    path: "Checkpoints - After improvements/6_1 - SLIM p2 layer C/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/6_1 - SLIM p2 layer C/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "neck"
@@ -98,7 +98,7 @@ models:
   # --- Improvement 6_1: SLIM P2 Layer (Inception) ---
   slim_p2_inc:
     name: "SLIM P2 (Inception)"
-    path: "Checkpoints - After improvements/6_1 - SLIM p2 layer INC/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/6_1 - SLIM p2 layer INC/model (2).onnx"
     decoder_layers: 6
     backbone: "ResNet-18"
     category: "neck"
@@ -107,7 +107,7 @@ models:
   # --- Improvement 7: gnconv + P2 Layer (6 decoders) ---
   gnconv_p2:
     name: "gnConv + P2 (6-dec)"
-    path: "Checkpoints - After improvements/7 - gnconv + p2 layer/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7 - gnconv + p2 layer/model (2).onnx"
     decoder_layers: 6
     backbone: "ResNet-18"
     category: "combined"
@@ -116,7 +116,7 @@ models:
   # --- Improvement 7: gnconv + P2 Layer CRR (3 decoders) ---
   gnconv_p2_crr:
     name: "gnConv + P2 (3-dec)"
-    path: "Checkpoints - After improvements/7 - gnconv + p2 layer CRR/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7 - gnconv + p2 layer CRR/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "combined"
@@ -125,7 +125,7 @@ models:
   # --- Improvement 7_1: gnconv + P2 + RepVGG (6 decoders) ---
   gnconv_p2_repvgg:
     name: "gnConv + P2 + RepVGG (6-dec)"
-    path: "Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg/model (2).onnx"
     decoder_layers: 6
     backbone: "ResNet-18"
     category: "combined"
@@ -134,7 +134,7 @@ models:
   # --- Improvement 7_1: gnconv + P2 + RepVGG CRR (3 decoders) ---
   gnconv_p2_repvgg_crr:
     name: "gnConv + P2 + RepVGG (3-dec)"
-    path: "Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg CRR/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7_1 - gnconv + p2 layer + Repvgg CRR/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "combined"
@@ -143,7 +143,7 @@ models:
   # --- Improvement 7_2: gnconv + SLIM P2 + RepVGG (6 decoders) ---
   gnconv_slim_p2_repvgg:
     name: "gnConv + SLIM-P2 + RepVGG (6-dec)"
-    path: "Checkpoints - After improvements/7_2 - gnconv + SLIM p2 layer + Repvgg/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7_2 - gnconv + SLIM p2 layer + Repvgg/model (2).onnx"
     decoder_layers: 6
     backbone: "ResNet-18"
     category: "combined"
@@ -152,7 +152,7 @@ models:
   # --- Improvement 7_2: gnconv + SLIM P2 + RepVGG CRR (3 decoders) ---
   gnconv_slim_p2_repvgg_crr:
     name: "gnConv + SLIM-P2 + RepVGG (3-dec)"
-    path: "Checkpoints - After improvements/7_2 - gnconv + SLIM p2 layer + Repvgg CRR/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/7_2 - gnconv + SLIM p2 layer + Repvgg CRR/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "combined"
@@ -161,7 +161,7 @@ models:
   # --- Improvement 8: gnConV+P2 integrated ---
   gnconv_p2_integrated:
     name: "(gnConV+P2) Integrated"
-    path: "Checkpoints - After improvements/8 - (gnConV+p2)/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/8 - (gnConV+p2)/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "combined"
@@ -170,7 +170,7 @@ models:
   # --- Improvement 8_1: gnConv+SLIM P2 integrated ---
   gnconv_slim_p2_integrated:
     name: "(gnConv+SLIM-P2) Integrated"
-    path: "Checkpoints - After improvements/8_1 - (gnConv+SLIMp2)/model (2).onnx"
+    path: "Experiments/Checkpoints - After improvements/8_1 - (gnConv+SLIMp2)/model (2).onnx"
     decoder_layers: 3
     backbone: "ResNet-18"
     category: "combined"
@@ -179,7 +179,7 @@ models:
   # --- EfficientNet-B2 Backbone ---
   efficientnet_b2:
     name: "EfficientNet-B2"
-    path: "Checkpoints - After improvements/EfficientNet-B2/model_EFI.onnx"
+    path: "Experiments/Checkpoints - After improvements/EfficientNet-B2/model_EFI.onnx"
     decoder_layers: 3
     backbone: "EfficientNet-B2"
     category: "backbone"
@@ -188,7 +188,7 @@ models:
   # --- EfficientNet-B2 + P2 ---
   efficientnet_b2_p2:
     name: "EfficientNet-B2 + P2"
-    path: "Checkpoints - After improvements/EfficientNet-B2+P2/model_EFI_P2.onnx"
+    path: "Experiments/Checkpoints - After improvements/EfficientNet-B2+P2/model_EFI_P2.onnx"
     decoder_layers: 3
     backbone: "EfficientNet-B2"
     category: "backbone"
