@@ -1,0 +1,2 @@
+model,mAP_50,mAP_50_95,mAP_small,total_params,param_str,latency_ms,fps,size_mb,efficiency_score
+Final Baseline,0.0434,0.0228,0.019,,N/A (onnx not installed),14.097,70.94,76.74,3.08

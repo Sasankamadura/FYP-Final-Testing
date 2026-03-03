@@ -1,0 +1,2 @@
+model_key,model_name,decoder_layers,mAP_50,mAP_50_95,mAP_75,mAP_small,mAP_medium,mAP_large,AR_100,delta_mAP_50
+final_baseline,Final Baseline,3,0.0434,0.0228,0.0215,0.019,0.0297,0.0825,0.102,0.0

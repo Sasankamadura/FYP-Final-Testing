@@ -1,0 +1,2 @@
+model_key,model_name,AP50_awning-tricycle,AP50_bicycle,AP50_bus,AP50_car,AP50_pedestrian,AP50_people,AP50_tricycle,AP50_truck,AP50_van
+final_baseline,Final Baseline,0.0,0.0,0.0,0.2392,0.0363,0.0127,0.0703,0.003,0.0296

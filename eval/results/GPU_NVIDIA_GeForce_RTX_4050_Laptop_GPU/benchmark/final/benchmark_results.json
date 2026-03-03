@@ -1,0 +1,25 @@
+{
+  "final_baseline": {
+    "name": "Final Baseline",
+    "decoder_layers": 3,
+    "backbone": "ResNet-18",
+    "mean_latency_ms": 14.097,
+    "std_latency_ms": 1.58,
+    "min_latency_ms": 12.519,
+    "max_latency_ms": 20.157,
+    "median_latency_ms": 13.572,
+    "p95_latency_ms": 17.416,
+    "p99_latency_ms": 19.504,
+    "fps": 70.94,
+    "gpu_memory_mb": 361,
+    "warmup_iterations": 50,
+    "measure_iterations": 200,
+    "model_size_mb": 76.74,
+    "total_params": null,
+    "param_str": "N/A (onnx not installed)",
+    "providers": [
+      "CUDAExecutionProvider",
+      "CPUExecutionProvider"
+    ]
+  }
+}

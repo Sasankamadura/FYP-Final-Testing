@@ -1,0 +1,2 @@
+model_key,name,decoder_layers,backbone,mean_latency_ms,std_latency_ms,min_latency_ms,max_latency_ms,median_latency_ms,p95_latency_ms,p99_latency_ms,fps,gpu_memory_mb,warmup_iterations,measure_iterations,model_size_mb,total_params,param_str,providers
+final_baseline,Final Baseline,3,ResNet-18,14.097,1.58,12.519,20.157,13.572,17.416,19.504,70.94,361,50,200,76.74,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
