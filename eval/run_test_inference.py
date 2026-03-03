@@ -57,10 +57,15 @@ def main():
     print_gpu_info(gpu_info)
     gpu_tag = get_gpu_tag(gpu_info)
 
-    # ---- Output Directory ----
-    output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "test_predictions")
-    os.makedirs(output_dir, exist_ok=True)
-    save_gpu_info(output_dir, gpu_info)
+    # ---- Output Directory Base ----
+    base_output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "test_predictions")
+    os.makedirs(base_output_dir, exist_ok=True)
+    save_gpu_info(base_output_dir, gpu_info)
+
+    exp_dir = os.path.join(base_output_dir, "experiments")
+    final_dir = os.path.join(base_output_dir, "final")
+    os.makedirs(exp_dir, exist_ok=True)
+    os.makedirs(final_dir, exist_ok=True)
 
     # ---- Test Images ----
     test_dir = os.path.join(workspace_root, config["datasets"]["test"]["images_dir"])
@@ -108,7 +113,10 @@ def main():
             detector = OnnxDetector(model_path, input_size=input_size)
             detector.warmup(iterations=5)
 
-            model_output_dir = os.path.join(output_dir, model_key)
+            is_final = model_cfg.get("category", "") == "final"
+            out_root = final_dir if is_final else exp_dir
+
+            model_output_dir = os.path.join(out_root, model_key)
             os.makedirs(model_output_dir, exist_ok=True)
 
             all_predictions = []
@@ -182,7 +190,7 @@ def main():
             import traceback
             traceback.print_exc()
 
-    print(f"\nTest predictions saved to: {output_dir}")
+    print(f"\nTest predictions saved to: {base_output_dir}")
 
 
 if __name__ == "__main__":

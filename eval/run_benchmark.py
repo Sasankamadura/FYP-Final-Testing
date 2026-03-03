@@ -147,10 +147,16 @@ def main():
     print_gpu_info(gpu_info)
     gpu_tag = get_gpu_tag(gpu_info)
 
-    # ---- Output Directory ----
-    output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "benchmark")
-    os.makedirs(output_dir, exist_ok=True)
-    save_gpu_info(output_dir, gpu_info)
+    # ---- Output Directory Base ----
+    base_output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "benchmark")
+    os.makedirs(base_output_dir, exist_ok=True)
+    save_gpu_info(base_output_dir, gpu_info)
+
+    # Setup directories for categories
+    exp_dir = os.path.join(base_output_dir, "experiments")
+    final_dir = os.path.join(base_output_dir, "final")
+    os.makedirs(exp_dir, exist_ok=True)
+    os.makedirs(final_dir, exist_ok=True)
 
     # ---- Benchmark Settings ----
     bench_cfg = config["benchmark"]
@@ -181,7 +187,8 @@ def main():
         models = {args.model: models[args.model]}
 
     # ---- Benchmark Each Model ----
-    all_results = OrderedDict()
+    all_results_exp = OrderedDict()
+    all_results_final = OrderedDict()
 
     for model_key, model_cfg in models.items():
         model_path = os.path.join(workspace_root, model_cfg["path"])
@@ -214,7 +221,10 @@ def main():
             bench_results["param_str"] = model_info.get("param_str", "N/A")
             bench_results["providers"] = model_info["providers"]
 
-            all_results[model_key] = {
+            is_final = model_cfg.get("category", "") == "final"
+            active_results = all_results_final if is_final else all_results_exp
+
+            active_results[model_key] = {
                 "name": model_name,
                 "decoder_layers": model_cfg.get("decoder_layers", "N/A"),
                 "backbone": model_cfg.get("backbone", "N/A"),
@@ -237,9 +247,12 @@ def main():
             continue
 
     # ---- Print Summary Table ----
-    if all_results:
+    def save_group_benchmark(results_dict, root_path, group_name):
+        if not results_dict:
+            return
+            
         print(f"\n{'=' * 130}")
-        print("  BENCHMARK RESULTS SUMMARY")
+        print(f"  [{group_name}] BENCHMARK RESULTS SUMMARY")
         print(f"{'=' * 130}")
         print(f"  GPU: {gpu_info['gpu_name']} | CUDA: {gpu_info['cuda_version']} | ORT: {gpu_info['onnxruntime_version']}")
         print(f"{'=' * 130}")
@@ -251,7 +264,7 @@ def main():
         print(header)
         print("-" * 140)
 
-        for key, res in all_results.items():
+        for key, res in results_dict.items():
             gpu_mem_str = f"{res.get('gpu_memory_mb', -1)}M" if res.get('gpu_memory_mb', -1) > 0 else "N/A"
             param_s = res.get("param_str", "N/A")
             row = (
@@ -270,23 +283,27 @@ def main():
 
         # ---- Save Results ----
         # JSON
-        results_json = os.path.join(output_dir, "benchmark_results.json")
+        results_json = os.path.join(root_path, "benchmark_results.json")
         with open(results_json, "w") as f:
-            json.dump(all_results, f, indent=2, default=str)
+            json.dump(results_dict, f, indent=2, default=str)
 
         # CSV
-        results_csv = os.path.join(output_dir, "benchmark_results.csv")
+        results_csv = os.path.join(root_path, "benchmark_results.csv")
         with open(results_csv, "w", newline="") as f:
             writer = csv.writer(f)
             first = True
-            for key, res in all_results.items():
+            for key, res in results_dict.items():
                 if first:
                     writer.writerow(["model_key"] + list(res.keys()))
                     first = False
                 writer.writerow([key] + [str(v) for v in res.values()])
 
-        print(f"\nResults saved to: {output_dir}")
-    else:
+        print(f"\n[{group_name}] Results saved to: {root_path}")
+
+    save_group_benchmark(all_results_exp, exp_dir, "Experiments")
+    save_group_benchmark(all_results_final, final_dir, "Final Models")
+    
+    if not all_results_exp and not all_results_final:
         print("\nNo models were benchmarked successfully.")
 
 

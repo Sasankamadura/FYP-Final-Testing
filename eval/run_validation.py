@@ -141,6 +141,7 @@ def run_coco_evaluation(coco_data, predictions, output_dir, model_key):
             "AR_1": 0.0, "AR_10": 0.0, "AR_100": 0.0,
             "AR_small": 0.0, "AR_medium": 0.0, "AR_large": 0.0,
             "per_class_ap": {},
+            "pr_curve_data": {},
         }
 
     coco_dt = coco_gt.loadRes(pred_file)
@@ -168,8 +169,9 @@ def run_coco_evaluation(coco_data, predictions, output_dir, model_key):
         "AR_large": round(float(stats[11]), 4),     # AR for large objects
     }
 
-    # ---- Per-Class AP@50 ----
+    # ---- Per-Class AP@50 and PR Curves ----
     per_class_ap = {}
+    pr_curve_data = {}
     cat_ids = coco_gt.getCatIds()
     cat_names = [c["name"] for c in coco_gt.loadCats(cat_ids)]
 
@@ -187,8 +189,18 @@ def run_coco_evaluation(coco_data, predictions, output_dir, model_key):
             "AP_50": round(float(coco_eval_cls.stats[1]), 4),
             "AP_50_95": round(float(coco_eval_cls.stats[0]), 4),
         }
+        
+        # Extract Precision-Recall array for IoU=0.50, Area=all, maxDets=100
+        # eval['precision'] shape: [T, R, K, A, M] -> [10, 101, 1, 4, 3]
+        # We want T=0 (IoU=0.50), K=0 (current class), A=0 (all area), M=2 (maxDets=100)
+        try:
+            prec = coco_eval_cls.eval['precision'][0, :, 0, 0, 2]
+            pr_curve_data[cat_name] = prec.tolist()
+        except Exception:
+            pr_curve_data[cat_name] = []
 
     results["per_class_ap"] = per_class_ap
+    results["pr_curve_data"] = pr_curve_data
 
     # Cleanup temp file
     if os.path.exists(anno_file):
@@ -250,10 +262,16 @@ def main():
     print_gpu_info(gpu_info)
     gpu_tag = get_gpu_tag(gpu_info)
 
-    # ---- Output Directory ----
-    output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "validation")
-    os.makedirs(output_dir, exist_ok=True)
-    save_gpu_info(output_dir, gpu_info)
+    # ---- Output Directory Base ----
+    base_output_dir = os.path.join(workspace_root, config["output_dir"], gpu_tag, "validation")
+    os.makedirs(base_output_dir, exist_ok=True)
+    save_gpu_info(base_output_dir, gpu_info)
+
+    # Setup directories for categories
+    exp_dir = os.path.join(base_output_dir, "experiments")
+    final_dir = os.path.join(base_output_dir, "final")
+    os.makedirs(exp_dir, exist_ok=True)
+    os.makedirs(final_dir, exist_ok=True)
 
     # ---- Load Annotations ----
     anno_path = os.path.join(workspace_root, config["datasets"]["val"]["annotations"])
@@ -284,22 +302,33 @@ def main():
     input_size = tuple(config["evaluation"]["input_size"])
 
     # ---- Evaluate Each Model (with resume support) ----
-    all_results = OrderedDict()
+    all_results_exp = OrderedDict()
+    all_results_final = OrderedDict()
 
     # Load any previously saved results for resume
-    for model_key in models:
-        prev_result_file = os.path.join(output_dir, f"{model_key}_results.json")
+    for model_key, model_cfg in models.items():
+        is_final = model_cfg.get("category", "") == "final"
+        out_root = final_dir if is_final else exp_dir
+        prev_result_file = os.path.join(out_root, f"{model_key}_results.json")
+        
         if os.path.exists(prev_result_file):
             with open(prev_result_file, "r") as f:
-                all_results[model_key] = json.load(f)
+                if is_final:
+                    all_results_final[model_key] = json.load(f)
+                else:
+                    all_results_exp[model_key] = json.load(f)
 
     for model_key, model_cfg in models.items():
         model_path = os.path.join(workspace_root, model_cfg["path"])
         model_name = model_cfg["name"]
+        is_final = model_cfg.get("category", "") == "final"
+        out_root = final_dir if is_final else exp_dir
+        
+        active_results = all_results_final if is_final else all_results_exp
 
         # Skip already completed models
-        if model_key in all_results:
-            m = all_results[model_key].get("metrics", {})
+        if model_key in active_results:
+            m = active_results[model_key].get("metrics", {})
             print(f"\n  [SKIP] {model_name} — already evaluated (mAP@50={m.get('mAP_50', 'N/A')})")
             continue
 
@@ -337,21 +366,23 @@ def main():
 
             # Compute COCO metrics
             print("  Computing COCO metrics...")
-            metrics = run_coco_evaluation(coco_data, predictions, output_dir, model_key)
+            metrics = run_coco_evaluation(coco_data, predictions, out_root, model_key)
+            pr_data = metrics.pop("pr_curve_data", {}) # separate PR data from main metrics
 
-            all_results[model_key] = {
+            active_results[model_key] = {
                 "name": model_name,
                 "model_info": model_info,
                 "config": model_cfg,
                 "metrics": metrics,
                 "num_predictions": len(predictions),
                 "inference_time_s": round(t_elapsed, 2),
+                "pr_curve_data": pr_data  # Store PR data
             }
 
             # Save individual model result
-            result_file = os.path.join(output_dir, f"{model_key}_results.json")
+            result_file = os.path.join(out_root, f"{model_key}_results.json")
             with open(result_file, "w") as f:
-                json.dump(all_results[model_key], f, indent=2)
+                json.dump(active_results[model_key], f, indent=2)
 
             print(
                 f"  >> mAP@50: {metrics['mAP_50']:.4f} | "
@@ -366,15 +397,28 @@ def main():
             continue
 
     # ---- Summary ----
-    if all_results:
-        print_summary_table(all_results)
-
+    def save_group_summary(results_dict, root_path, group_name):
+        if not results_dict:
+            return
+        print(f"\n[{group_name}] Summary Settings")
+        print_summary_table(results_dict)
+        
         # Save aggregated results
-        summary_file = os.path.join(output_dir, "all_validation_results.json")
+        summary_file = os.path.join(root_path, "all_validation_results.json")
         with open(summary_file, "w") as f:
-            json.dump(all_results, f, indent=2)
-        print(f"\nAll results saved to: {output_dir}")
-    else:
+            json.dump(results_dict, f, indent=2)
+            
+        pr_file = os.path.join(root_path, "pr_curves.json")
+        # Extract just the PR data for the plotting script
+        pr_curves = {k: v.get("pr_curve_data", {}) for k, v in results_dict.items()}
+        with open(pr_file, "w") as f:
+            json.dump(pr_curves, f, indent=2)
+        print(f"[{group_name}] Results and PR curves saved to: {root_path}")
+
+    save_group_summary(all_results_exp, exp_dir, "Experiments")
+    save_group_summary(all_results_final, final_dir, "Final Models")
+    
+    if not all_results_exp and not all_results_final:
         print("\nNo models were evaluated successfully.")
 
 

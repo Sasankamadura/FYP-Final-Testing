@@ -44,6 +44,8 @@ def main():
     parser = argparse.ArgumentParser(description="Baseline Per-Class Analysis")
     parser.add_argument("--config", type=str, default="eval/config.yaml")
     parser.add_argument("--workspace", type=str, default=None)
+    parser.add_argument("--mode", type=str, choices=["experiments", "final"], default="experiments",
+                        help="Which models to compare against the baseline.")
     args = parser.parse_args()
 
     if args.workspace:
@@ -64,19 +66,26 @@ def main():
         return
     gpu_dir = gpu_dirs[0]
 
-    # Load all validation results
-    val_file = os.path.join(results_root, gpu_dir, "validation", "all_validation_results.json")
-    all_results = load_json(val_file)
+    # Load baseline from experiments (as it's standard)
+    base_val_file = os.path.join(results_root, gpu_dir, "validation", "experiments", "all_validation_results.json")
+    base_results = load_json(base_val_file)
+    
+    if not base_results:
+         print(f"Could not load baseline results from: {base_val_file}\nRun `python eval/run_validation.py` first.")
+         return
 
-    # Extract baseline
     baseline_key = "baseline_rtdetr_r18"
-    if baseline_key not in all_results:
-        print(f"Baseline key '{baseline_key}' not found in results.")
+    if baseline_key not in base_results:
+        print(f"Baseline key '{baseline_key}' not found in experiments results.")
         return
 
-    baseline = all_results[baseline_key]
+    baseline = base_results[baseline_key]
     baseline_metrics = baseline["metrics"]
     baseline_pc = baseline_metrics["per_class_ap"]
+
+    # Load target models for comparison based on mode
+    target_val_file = os.path.join(results_root, gpu_dir, "validation", args.mode, "all_validation_results.json")
+    target_results = load_json(target_val_file) or {}
 
     # Sort classes by AP@50 descending for better readability
     classes_sorted = sorted(baseline_pc.keys(), key=lambda c: baseline_pc[c]["AP_50"], reverse=True)
@@ -134,7 +143,7 @@ def main():
     #  2. BASELINE-ONLY MULTI-METRIC HEATMAP
     # ================================================================
     _, plt = _init_matplotlib()
-    plots_dir = os.path.join(results_root, "reports", "plots")
+    plots_dir = os.path.join(results_root, "reports", args.mode, "plots")
     os.makedirs(plots_dir, exist_ok=True)
 
     # --- Heatmap 1: Baseline multi-metric per class ---
@@ -176,8 +185,8 @@ def main():
     model_names = []
     delta_data = []
 
-    for key, res in all_results.items():
-        if key == baseline_key:
+    for key, res in target_results.items():
+        if key == baseline_key and args.mode == "experiments":
             continue
         pc = res.get("metrics", {}).get("per_class_ap", {})
         if not pc:

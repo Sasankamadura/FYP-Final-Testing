@@ -1,0 +1,41 @@
+{
+  "config": "/kaggle/working/RT-DETR_SOD_IMP/rtdetr_pytorch/configs/rtdetr/rtdetr_r18vd_p2_slim.yml",
+  "checkpoint": "/kaggle/input/notebooks/movidudinusara/final-training-rt-detrr18-visd-slimp2layer/RT-DETR_SOD_IMP/rtdetr_pytorch/output/rtdetr_r18vd_p2_slim/checkpoint0101.pth",
+  "device": "cuda",
+  "total_params": 23676504,
+  "trainable_params": 23647992,
+  "layer_stats": {
+    "backbone": {
+      "total_params": 11190112,
+      "num_layers": 23
+    },
+    "encoder": {
+      "total_params": 8449600,
+      "num_layers": 240
+    },
+    "decoder": {
+      "total_params": 4036792,
+      "num_layers": 119
+    }
+  },
+  "flops": {
+    "torchinfo_params": 26735320,
+    "torchinfo_mult_adds": 36076211364,
+    "torchinfo_gflops": 36.076211364
+  },
+  "memory": {
+    "allocated_mb": 104.2314453125,
+    "reserved_mb": 432.0,
+    "max_allocated_mb": 299.0322265625
+  },
+  "fps_benchmark": {
+    "640x640": {
+      "latency_mean_ms": 27.616180400000022,
+      "latency_std_ms": 0.12201241855604654,
+      "latency_min_ms": 27.47106999999005,
+      "latency_max_ms": 28.195240000002286,
+      "fps_mean": 36.21065569226942,
+      "fps_std": 8195.887040306876
+    }
+  }
+}

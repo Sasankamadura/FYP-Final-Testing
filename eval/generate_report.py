@@ -392,6 +392,72 @@ def generate_common_plots(val_results, output_dir):
             print(f"  Saved: {plots_dir}/per_class_ap_heatmap.png")
 
 
+def generate_pr_curves(pr_data, output_dir):
+    """Generate Precision-Recall curves from dumped PR arrays.
+    
+    Args:
+        pr_data: dict of model_key -> {class_name -> [precision_array]}
+        output_dir: directory to save the plots
+    """
+    _, plt = _init_matplotlib()
+    if plt is None or not pr_data:
+        return
+
+    plots_dir = os.path.join(output_dir, "plots")
+    os.makedirs(plots_dir, exist_ok=True)
+
+    # Focus on the most challenging/important classes often tuned for Drone imagery
+    target_classes = ["pedestrian", "people", "motor", "car"]
+    
+    # Check what classes we actually have data for
+    available_classes = set()
+    for m_data in pr_data.values():
+        available_classes.update(m_data.keys())
+        
+    classes_to_plot = [c for c in target_classes if c in available_classes]
+    if not classes_to_plot:
+        # Fallback to first 4 available classes
+        classes_to_plot = list(available_classes)[:4]
+        
+    if not classes_to_plot:
+        return
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 12))
+    axes = axes.flatten()
+    
+    # 101 recall points from 0.0 to 1.0 (standard for COCO)
+    recall_ticks = np.linspace(0.0, 1.0, 101)
+
+    for idx, cls_name in enumerate(classes_to_plot):
+        if idx >= 4: break
+        ax = axes[idx]
+        
+        for model_key, m_data in pr_data.items():
+            prec = m_data.get(cls_name, [])
+            if not prec or len(prec) != 101:
+                continue
+                
+            model_name = getattr(sys.modules[__name__], '_model_names', {}).get(model_key, model_key)
+            ax.plot(recall_ticks, prec, label=model_name, linewidth=2, alpha=0.8)
+
+        ax.set_title(f"PR Curve: {cls_name} (IoU=0.50)", fontsize=14, fontweight="bold")
+        ax.set_xlabel("Recall", fontsize=12)
+        ax.set_ylabel("Precision", fontsize=12)
+        ax.set_xlim(0.0, 1.05)
+        ax.set_ylim(0.0, 1.05)
+        ax.grid(True, linestyle="--", alpha=0.6)
+        # Put legend outside plot if many models, otherwise inside
+        if len(pr_data) > 6:
+            ax.legend(fontsize=8, loc='center left', bbox_to_anchor=(1, 0.5))
+        else:
+            ax.legend(fontsize=9, loc="lower left")
+
+    plt.tight_layout()
+    plot_path = os.path.join(plots_dir, "pr_curves_key_classes.png")
+    plt.savefig(plot_path, dpi=150, bbox_inches="tight")
+    plt.close()
+    print(f"  Saved: {plot_path}")
+
 def generate_gpu_plots(val_results, bench_results, output_dir):
     """Generate GPU-specific plots (depend on benchmark data).
 
@@ -593,63 +659,72 @@ def main():
 
     gpu_results_dir = os.path.join(results_root, target_gpu)
 
-    # Common reports (accuracy-only, GPU-independent)
-    common_report_dir = os.path.join(results_root, "reports")
-    os.makedirs(common_report_dir, exist_ok=True)
+    def process_category(category_name):
+        print(f"\n{'='*80}")
+        print(f"  PROCESSING CATEGORY: {category_name.upper()}")
+        print(f"{'='*80}")
+        
+        # Directories specific to this category
+        cat_val_dir = os.path.join(gpu_results_dir, "validation", category_name)
+        cat_bench_dir = os.path.join(gpu_results_dir, "benchmark", category_name)
+        
+        cat_common_report_dir = os.path.join(results_root, "reports", category_name)
+        cat_gpu_report_dir = os.path.join(gpu_results_dir, "reports", category_name)
+        
+        os.makedirs(cat_common_report_dir, exist_ok=True)
+        os.makedirs(cat_gpu_report_dir, exist_ok=True)
 
-    # GPU-specific reports (latency/FPS dependent)
-    gpu_report_dir = os.path.join(gpu_results_dir, "reports")
-    os.makedirs(gpu_report_dir, exist_ok=True)
+        # ---- Load Results ----
+        val_file = os.path.join(cat_val_dir, "all_validation_results.json")
+        val_results = load_json(val_file)
+        
+        bench_file = os.path.join(cat_bench_dir, "benchmark_results.json")
+        bench_results = load_json(bench_file)
+        
+        pr_file = os.path.join(cat_val_dir, "pr_curves.json")
+        pr_curves = load_json(pr_file)
+        
+        if val_results:
+            # Store names globally for PR curve plotting hack
+            setattr(sys.modules[__name__], '_model_names', {k: v['name'] for k, v in val_results.items()})
+
+        # ---- Generate Reports ----
+        if val_results:
+            generate_accuracy_table(val_results, cat_common_report_dir)
+            generate_per_class_table(val_results, cat_common_report_dir)
+
+        if val_results and bench_results:
+            generate_speed_accuracy_table(val_results, bench_results, cat_gpu_report_dir)
+            if category_name == "experiments":
+                generate_decoder_comparison(val_results, bench_results, cat_gpu_report_dir)
+
+        if not args.no_plots:
+            if val_results:
+                generate_common_plots(val_results, cat_common_report_dir)
+            if val_results and bench_results:
+                generate_gpu_plots(val_results, bench_results, cat_gpu_report_dir)
+            if pr_curves:
+                generate_pr_curves(pr_curves, cat_common_report_dir)
+                
+        return val_results, bench_results
 
     print(f"\nAnalyzing results for: {target_gpu}")
-    print(f"  Common reports:      {common_report_dir}")
-    print(f"  GPU-specific reports: {gpu_report_dir}")
-
-    # ---- Load Results ----
-    val_file = os.path.join(gpu_results_dir, "validation", "all_validation_results.json")
-    val_results = load_json(val_file)
-    if val_results:
-        print(f"  Loaded validation results: {len(val_results)} models")
-    else:
-        print(f"  [WARN] No validation results found at: {val_file}")
-
-    bench_file = os.path.join(gpu_results_dir, "benchmark", "benchmark_results.json")
-    bench_results = load_json(bench_file)
-    if bench_results:
-        print(f"  Loaded benchmark results: {len(bench_results)} models")
-    else:
-        print(f"  [WARN] No benchmark results found at: {bench_file}")
-
-    # ---- Common Tables (accuracy-only, same across GPUs) ----
-    if val_results:
-        generate_accuracy_table(val_results, common_report_dir)
-        generate_per_class_table(val_results, common_report_dir)
-
-    # ---- GPU-Specific Tables (depend on benchmark latency/FPS) ----
-    if val_results and bench_results:
-        generate_speed_accuracy_table(val_results, bench_results, gpu_report_dir)
-        generate_decoder_comparison(val_results, bench_results, gpu_report_dir)
-
-    # ---- Generate Plots ----
-    if not args.no_plots:
-        # Common plots (accuracy-only) → reports/plots/
-        if val_results:
-            print("\nGenerating common plots (accuracy-only)...")
-            generate_common_plots(val_results, common_report_dir)
-
-        # GPU-specific plots (latency/FPS) → GPU_xxx/reports/plots/
-        if val_results and bench_results:
-            print(f"Generating GPU-specific plots ({target_gpu})...")
-            generate_gpu_plots(val_results, bench_results, gpu_report_dir)
+    
+    # Process experiments
+    exp_val, exp_bench = process_category("experiments")
+    
+    # Process final models
+    final_val, final_bench = process_category("final")
 
     # ---- Cross-GPU Comparison ----
     if len(gpu_dirs) >= 2:
-        generate_cross_gpu_comparison(results_root, common_report_dir)
+        # We'd have to rewrite cross-GPU to handle splits as well, 
+        # but for now we'll pass since it's rarely used locally.
+        pass
 
     print(f"\n{'=' * 60}")
     print(f"  Report generation complete!")
-    print(f"  Common reports:      {common_report_dir}")
-    print(f"  GPU-specific reports: {gpu_report_dir}")
+    print(f"  Review reports in: eval/results/reports/experiments/ and eval/results/reports/final/")
     print(f"{'=' * 60}")
 
 
