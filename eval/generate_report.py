@@ -343,8 +343,8 @@ def generate_common_plots(val_results, output_dir):
 
         ax.set_xticks(x)
         ax.set_xticklabels(names, rotation=45, ha="right", fontsize=8)
-        ax.set_ylabel("Average Precision", fontsize=12)
-        ax.set_title("AP by Object Size Across Models", fontsize=14)
+        ax.set_ylabel("Mean Average Precision", fontsize=12)
+        ax.set_title("mAP by Object Size Across Models", fontsize=14)
         ax.legend(fontsize=10)
         ax.grid(True, alpha=0.3, axis="y")
 
@@ -384,8 +384,8 @@ def generate_common_plots(val_results, output_dir):
                     ax.text(j, i, f"{data[i, j]:.2f}", ha="center", va="center", fontsize=7,
                             color="white" if data[i, j] > 0.5 else "black")
 
-            ax.set_title("Per-Class AP@50 Heatmap", fontsize=14)
-            plt.colorbar(im, ax=ax, label="AP@50", shrink=0.8)
+            ax.set_title("Per-Class mAP@50 Heatmap", fontsize=14)
+            plt.colorbar(im, ax=ax, label="mAP@50", shrink=0.8)
             plt.tight_layout()
             plt.savefig(os.path.join(plots_dir, "per_class_ap_heatmap.png"), dpi=150)
             plt.close()

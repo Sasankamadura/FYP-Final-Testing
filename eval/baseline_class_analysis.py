@@ -148,7 +148,7 @@ def main():
     os.makedirs(plots_dir, exist_ok=True)
 
     # --- Heatmap 1: Baseline multi-metric per class ---
-    metrics_labels = ["AP@50", "AP@50:95"]
+    metrics_labels = ["mAP@50", "mAP@50:95"]
     data_baseline = np.array([
         [baseline_pc[c]["AP_50"] for c in classes_sorted],
         [baseline_pc[c]["AP_50_95"] for c in classes_sorted],
@@ -170,7 +170,7 @@ def main():
                     fontweight="bold", color=color)
 
     ax.set_title("Baseline RT-DETR R18 — Per-Class Performance", fontsize=14, fontweight="bold")
-    plt.colorbar(im, ax=ax, label="AP Score", shrink=0.8, pad=0.02)
+    plt.colorbar(im, ax=ax, label="mAP Score", shrink=0.8, pad=0.02)
     plt.tight_layout()
     path1 = os.path.join(plots_dir, "baseline_class_heatmap.png")
     plt.savefig(path1, dpi=150, bbox_inches="tight")
@@ -220,9 +220,9 @@ def main():
                 ax.text(j, i, f"{sign}{val:.3f}", ha="center", va="center",
                         fontsize=7, color=color)
 
-        ax.set_title("Per-Class AP@50 Δ vs Baseline (Green = Better, Red = Worse)",
+        ax.set_title("Per-Class mAP@50 Δ vs Baseline (Green = Better, Red = Worse)",
                       fontsize=13, fontweight="bold")
-        plt.colorbar(im, ax=ax, label="Δ AP@50 vs Baseline", shrink=0.8)
+        plt.colorbar(im, ax=ax, label="Δ mAP@50 vs Baseline", shrink=0.8)
         plt.tight_layout()
         path2 = os.path.join(plots_dir, "baseline_vs_models_class_delta.png")
         plt.savefig(path2, dpi=150, bbox_inches="tight")
@@ -240,14 +240,14 @@ def main():
     x = np.arange(len(classes_sorted))
     width = 0.35
 
-    bars1 = ax.bar(x - width / 2, ap50_vals, width, label="AP@50",
+    bars1 = ax.bar(x - width / 2, ap50_vals, width, label="mAP@50",
                    color="#3498db", edgecolor="black", linewidth=0.5)
-    bars2 = ax.bar(x + width / 2, ap5095_vals, width, label="AP@50:95",
+    bars2 = ax.bar(x + width / 2, ap5095_vals, width, label="mAP@50:95",
                    color="#e74c3c", edgecolor="black", linewidth=0.5)
 
     ax.set_xlabel("Class", fontsize=12)
-    ax.set_ylabel("Average Precision", fontsize=12)
-    ax.set_title("Baseline RT-DETR R18 — Per-Class AP Breakdown", fontsize=14, fontweight="bold")
+    ax.set_ylabel("Mean Average Precision", fontsize=12)
+    ax.set_title("Baseline RT-DETR R18 — Per-Class mAP Breakdown", fontsize=14, fontweight="bold")
     ax.set_xticks(x)
     ax.set_xticklabels(classes_sorted, rotation=45, ha="right", fontsize=10)
     ax.set_ylim(0, 1.0)
