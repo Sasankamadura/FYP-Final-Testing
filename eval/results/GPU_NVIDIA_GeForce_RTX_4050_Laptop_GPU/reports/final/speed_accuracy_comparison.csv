@@ -1,6 +1,6 @@
 model,mAP_50,mAP_50_95,mAP_small,total_params,param_str,latency_ms,fps,size_mb,efficiency_score
-Final Baseline,0.4232,0.2493,0.1628,,N/A (onnx not installed),16.489,60.65,76.74,25.67
+Final Baseline,0.4232,0.2493,0.1629,,N/A (onnx not installed),16.489,60.65,76.74,25.67
 Final P2,0.441,0.2661,0.1798,,N/A (onnx not installed),30.523,32.76,85.0,14.45
-Final SLIM P2,0.4227,0.2517,0.1688,,N/A (onnx not installed),26.191,38.18,81.85,16.14
+Final SLIM P2,0.4228,0.2517,0.1688,,N/A (onnx not installed),26.191,38.18,81.85,16.14
 Final GnConv + P2,0.4255,0.2527,0.1699,,N/A (onnx not installed),52.532,19.04,84.17,8.1
 Final GnConv + SLIM P2,0.4128,0.2439,0.1588,,N/A (onnx not installed),40.716,24.56,81.7,10.14
