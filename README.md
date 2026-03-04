@@ -42,6 +42,40 @@ The `eval/config.yaml` is the single source of truth for the project.
 - Controls NMS thresholds, confidence thresholds, input sizes, and custom metrics.
 - Should a dataset directory or a model's path change, update this file exclusively.
 
+## Cloud Execution (Colab & Kaggle)
+
+If you need more powerful GPUs (like T4, P100, or A100), you can run this repository on Google Colab or Kaggle. 
+
+### 1. Git LFS Requirement
+This repository uses **Git LFS** to store model weights (`.onnx` files) and large datasets. When cloning in the cloud, you **must** ensure LFS is installed and pulled:
+
+```bash
+# In a Colab/Kaggle cell:
+!apt-get -qq install git-lfs
+!git lfs install
+!git clone https://github.com/Sasankamadura/FYP-Final-Testing.git
+cd FYP-Final-Testing
+!git lfs pull
+```
+
+### 2. Getting Results Back
+After running evaluations, the results are stored in `eval/results`. To download them as a zip file:
+
+```python
+import shutil
+from google.colab import files # For Colab
+# or simply use shutil.make_archive for Kaggle
+
+shutil.make_archive('eval_results', 'zip', 'eval/results')
+files.download('eval_results.zip') # Colab only
+```
+
+### 3. Notebooks
+- **[VisDrone_RTDETR_Colab.ipynb](VisDrone_RTDETR_Colab.ipynb)**: Best for quick T4/A100 runs.
+- **[VisDrone_RTDETR_Kaggle.ipynb](VisDrone_RTDETR_Kaggle.ipynb)**: Good for long-running batches (up to 12h).
+
+---
+
 ## Running Evaluation Scripts
 
 All Python scripts in the `eval/` folder should ideally be executed from the project root (`d:\Final Testing`) so that relative paths defined in `config.yaml` resolve properly.
