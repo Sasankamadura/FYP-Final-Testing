@@ -253,6 +253,8 @@ def main():
                         help="Evaluate a single model by its config key")
     parser.add_argument("--workspace", type=str, default=None,
                         help="Workspace root directory")
+    parser.add_argument("--overwrite", action="store_true",
+                        help="Overwrite existing validation results")
     args = parser.parse_args()
 
     # Determine workspace root
@@ -342,7 +344,7 @@ def main():
         active_results = all_results_final if is_final else all_results_exp
 
         # Skip already completed models
-        if model_key in active_results:
+        if model_key in active_results and not args.overwrite:
             m = active_results[model_key].get("metrics", {})
             print(f"\n  [SKIP] {model_name} — already evaluated (mAP@50={m.get('mAP_50', 'N/A')})")
             continue

@@ -1,2 +1,6 @@
-model_key,model_name,AP50_awning-tricycle,AP50_bicycle,AP50_bus,AP50_car,AP50_pedestrian,AP50_people,AP50_tricycle,AP50_truck,AP50_van
-final_baseline,Final Baseline,0.0,0.0,0.0,0.2392,0.0363,0.0127,0.0703,0.003,0.0296
+model_key,model_name,AP50_awning-tricycle,AP50_bicycle,AP50_bus,AP50_car,AP50_motor,AP50_pedestrian,AP50_people,AP50_tricycle,AP50_truck,AP50_van
+final_baseline,Final Baseline,0.157,0.1796,0.5422,0.8205,0.5364,0.4817,0.4099,0.2731,0.3449,0.4872
+final_p2,Final P2,0.1761,0.1826,0.586,0.8387,0.5262,0.5193,0.4219,0.2844,0.3541,0.521
+final_slim_p2,Final SLIM P2,0.1659,0.1685,0.5493,0.8284,0.5174,0.4941,0.4045,0.2677,0.3322,0.4994
+final_gnconv_p2,Final GnConv + P2,0.1712,0.1629,0.5528,0.8307,0.5205,0.4947,0.3924,0.292,0.3332,0.5046
+final_gnconv_slim_p2,Final GnConv + SLIM P2,0.1575,0.1489,0.5546,0.8219,0.504,0.4759,0.3883,0.2608,0.3216,0.4948

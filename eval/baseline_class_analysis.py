@@ -66,17 +66,18 @@ def main():
         return
     gpu_dir = gpu_dirs[0]
 
-    # Load baseline from experiments (as it's standard)
-    base_val_file = os.path.join(results_root, gpu_dir, "validation", "experiments", "all_validation_results.json")
-    base_results = load_json(base_val_file)
-    
-    if not base_results:
-         print(f"Could not load baseline results from: {base_val_file}\nRun `python eval/run_validation.py` first.")
-         return
+    # Load baseline from appropriate directory based on mode
+    if args.mode == "final":
+        base_val_file = os.path.join(results_root, gpu_dir, "validation", "final", "all_validation_results.json")
+        baseline_key = "final_baseline"
+    else:
+        base_val_file = os.path.join(results_root, gpu_dir, "validation", "experiments", "all_validation_results.json")
+        baseline_key = "baseline_rtdetr_r18"
 
-    baseline_key = "baseline_rtdetr_r18"
-    if baseline_key not in base_results:
-        print(f"Baseline key '{baseline_key}' not found in experiments results.")
+    try:
+        base_results = load_json(base_val_file)
+    except FileNotFoundError:
+        print(f"Could not load baseline results from: {base_val_file}\nRun `python eval/run_validation.py` first.")
         return
 
     baseline = base_results[baseline_key]
@@ -186,7 +187,7 @@ def main():
     delta_data = []
 
     for key, res in target_results.items():
-        if key == baseline_key and args.mode == "experiments":
+        if key == baseline_key:
             continue
         pc = res.get("metrics", {}).get("per_class_ap", {})
         if not pc:
@@ -204,7 +205,7 @@ def main():
         vmax = max(abs(delta_arr.min()), abs(delta_arr.max()), 0.15)
 
         fig, ax = plt.subplots(figsize=(15, max(8, len(model_names) * 0.55)))
-        im = ax.imshow(delta_arr, cmap="RdBu", aspect="auto", vmin=-vmax, vmax=vmax)
+        im = ax.imshow(delta_arr, cmap="RdYlGn", aspect="auto", vmin=-vmax, vmax=vmax)
 
         ax.set_xticks(range(len(classes_alpha)))
         ax.set_xticklabels(classes_alpha, rotation=45, ha="right", fontsize=9)
@@ -219,7 +220,7 @@ def main():
                 ax.text(j, i, f"{sign}{val:.3f}", ha="center", va="center",
                         fontsize=7, color=color)
 
-        ax.set_title("Per-Class AP@50 Δ vs Baseline (Blue = Better, Red = Worse)",
+        ax.set_title("Per-Class AP@50 Δ vs Baseline (Green = Better, Red = Worse)",
                       fontsize=13, fontweight="bold")
         plt.colorbar(im, ax=ax, label="Δ AP@50 vs Baseline", shrink=0.8)
         plt.tight_layout()
