@@ -35,19 +35,25 @@ def load_config(config_path):
         return yaml.safe_load(f)
 
 
-def build_category_mapping(coco_data):
+def build_category_mapping(coco_data, is_final=False):
     """Build mapping from model output label to COCO category ID.
 
     PaddleDetection RT-DETR ONNX exports produce **1-based** labels
     (internal 0-based index + 1).  VisDrone annotations also use 1-based
     category IDs (1–9 for the 9 annotated classes).
-
-    Therefore the correct mapping is **identity**: model label N → cat_id N.
     """
     categories = sorted(coco_data["categories"], key=lambda x: x["id"])
     mapping = {}
-    for cat in categories:
-        mapping[cat["id"]] = cat["id"]  # 1→1, 2→2, ..., 9→9
+
+    if not is_final:
+        # Experimented models need this mapping
+        for cat in categories:
+            mapping[cat["id"]] = cat["id"]  # 1→1, 2→2, ..., 9→9
+    else:
+        # Final models need this mapping
+        for idx, cat in enumerate(categories):
+            mapping[idx] = cat["id"]  # 0→1, 1→2, ..., 9→10
+            
     return mapping
 
 
@@ -274,21 +280,29 @@ def main():
     os.makedirs(final_dir, exist_ok=True)
 
     # ---- Load Annotations ----
-    anno_path = os.path.join(workspace_root, config["datasets"]["val"]["annotations"])
-    print(f"\nLoading annotations from: {anno_path}")
+    anno_path_final = os.path.join(workspace_root, config["datasets"]["val"]["annotations"])
+    anno_path_exp = config["datasets"]["val"].get("experimental_annotations", config["datasets"]["val"]["annotations"])
+    anno_path_exp = os.path.join(workspace_root, anno_path_exp)
+    
+    print(f"\nLoading Final annotations from: {anno_path_final}")
+    with open(anno_path_final, "r") as f:
+        coco_data_final = json.load(f)
 
-    with open(anno_path, "r") as f:
-        coco_data = json.load(f)
+    print(f"Loading Experimental annotations from: {anno_path_exp}")
+    with open(anno_path_exp, "r") as f:
+        coco_data_exp = json.load(f)
 
     images_dir = os.path.join(workspace_root, config["datasets"]["val"]["images_dir"])
     print(f"Images directory: {images_dir}")
-    print(f"Total validation images: {len(coco_data['images'])}")
-    print(f"Total annotations: {len(coco_data['annotations'])}")
-    print(f"Categories: {[c['name'] for c in coco_data['categories']]}")
+    print(f"Total validation images (Final): {len(coco_data_final['images'])}")
+    print(f"Categories (Final): {[c['name'] for c in coco_data_final['categories']]}")
+    print(f"Total validation images (Exp): {len(coco_data_exp['images'])}")
+    print(f"Categories (Exp): {[c['name'] for c in coco_data_exp['categories']]}")
 
     # ---- Category Mapping ----
-    category_mapping = build_category_mapping(coco_data)
-    print(f"Category mapping (model_label -> coco_id): {category_mapping}")
+    # Mapping will be built dynamically for each model based on whether it is a final model
+    # base mapping
+    print("Building category mapping dynamically per model...")
 
     # ---- Select Models ----
     models = config["models"]
@@ -324,6 +338,7 @@ def main():
         is_final = model_cfg.get("category", "") == "final"
         out_root = final_dir if is_final else exp_dir
         
+        coco_data = coco_data_final if is_final else coco_data_exp
         active_results = all_results_final if is_final else all_results_exp
 
         # Skip already completed models
@@ -354,6 +369,10 @@ def main():
             # Warmup
             print("  Warming up...")
             detector.warmup(iterations=5)
+
+            # Build correct category mapping based on model type
+            category_mapping = build_category_mapping(coco_data, is_final=is_final)
+            print(f"  Using category mapping: {category_mapping}")
 
             # Run inference on validation set
             print("  Running inference on validation set...")

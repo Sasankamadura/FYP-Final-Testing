@@ -9,7 +9,8 @@ workspace_root: "."
 datasets:
   val:
     images_dir: "VisDrone Val image set"
-    annotations: "VisDrone Val image set/annotations_VisDrone_val.json"
+    annotations: "VisDrone Val image set/annotations_VisDrone_val_fixed.json"
+    experimental_annotations: "VisDrone Val image set/annotations_VisDrone_val_experiment.json"
   test:
     images_dir: "VisDrone test image set/images"
 

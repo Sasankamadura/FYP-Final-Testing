@@ -162,33 +162,14 @@ class OnnxDetector:
             from functools import reduce
             import operator
         except ImportError:
-            # Try fallback location (Windows long-path workaround)
-            try:
-                import sys
-                if r"D:\onnx_lib" not in sys.path:
-                    sys.path.insert(0, r"D:\onnx_lib")
-                
-                # To prevent circular import issues with ONNX versions in python
-                import types
-                if 'onnx.version' not in sys.modules:
-                    sys.modules['onnx.version'] = types.ModuleType('onnx.version')
-                    sys.modules['onnx.version'].version = '1.15.0' # Mock version
-                
-                import onnx
-                from functools import reduce
-                import operator
-            except (ImportError, AttributeError) as e:
-                pass
-            
-            if 'onnx' not in sys.modules or not hasattr(sys.modules.get('onnx', object()), 'load'):
-                print("  [WARN] 'onnx' package not installed or failed to initialize smoothly. "
-                      "Install with: pip install onnx")
-                return {
-                    "total_params": None,
-                    "trainable_params": None,
-                    "param_str": "N/A (onnx not installed)",
-                    "param_breakdown": {},
-                }
+            print("  [WARN] 'onnx' package not installed or failed to initialize smoothly. "
+                  "Install with: pip install onnx")
+            return {
+                "total_params": None,
+                "trainable_params": None,
+                "param_str": "N/A (onnx not installed)",
+                "param_breakdown": {},
+            }
 
         try:
             model = onnx.load(self.model_path, load_external_data=False)
