@@ -1,9 +1,9 @@
 model_key,name,decoder_layers,backbone,mean_latency_ms,std_latency_ms,min_latency_ms,max_latency_ms,median_latency_ms,p95_latency_ms,p99_latency_ms,fps,gpu_memory_mb,warmup_iterations,measure_iterations,model_size_mb,total_params,param_str,providers
 final_baseline,Final Baseline,3,ResNet-18,17.332,1.577,15.884,24.054,16.619,20.957,21.816,57.7,361,50,200,76.74,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
-final_p2,Final P2,3,ResNet-18,33.817,1.193,32.584,39.138,33.382,35.978,38.838,29.57,617,50,200,85.0,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_p2,Final P2,3,ResNet-18,33.817,1.193,32.584,39.138,33.382,35.978,38.838,29.57,617,50,200,85,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_slim_p2,Final SLIM P2,3,ResNet-18,29.931,1.497,28.482,35.641,29.276,33.137,34.65,33.41,625,50,200,81.85,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_gnconv_p2,Final GnConv + P2,3,ResNet-18,60.812,3.33,54.997,79.764,60.564,65.993,69.96,16.44,625,50,200,84.17,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
-final_gnconv_slim_p2,Final GnConv + SLIM P2,3,ResNet-18,61.041,3.222,52.953,70.197,60.859,67.019,69.612,16.38,621,50,200,74.87,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_gnconv_slim_p2,Final GnConv + SLIM P2,3,ResNet-18,36.292,0.915,35.32,42.673,36.019,37.87,39.138,27.55,613,50,200,81.7,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_efficientnet_gnconv_p2,Final Efficientnet-B2 + GnConv + P2,3,EfficientNet-B2,62.417,3.548,57.561,75.953,62.037,68.902,72.442,16.02,617,50,200,68.47,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_improved_gnconv,Final Improved Gnconv,3,ResNet-18,56.816,3.223,51.955,71.032,56.299,62.428,66.492,17.6,617,50,200,74.87,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_query_improvement,Final Query Improvement,3,ResNet-18,18.07,1.695,16.654,24.125,17.062,21.481,23.201,55.34,361,50,200,76.74,None,N/A (onnx not installed),"['CUDAExecutionProvider', 'CPUExecutionProvider']"
