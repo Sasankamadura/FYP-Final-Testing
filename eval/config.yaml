@@ -236,6 +236,30 @@ models:
     category: "final"
     description: "Final correctly trained GnConv + SLIM P2 layer model"
 
+  final_efficientnet_gnconv_p2:
+    name: "Final Efficientnet-B2 + GnConv + P2"
+    path: "Final Models/Efficientnet-B2 + GnConv + P2 Layer/model (2).onnx"
+    decoder_layers: 3
+    backbone: "EfficientNet-B2"
+    category: "final"
+    description: "Final correctly trained Efficientnet-B2 + GnConv + P2 Layer model"
+
+  final_improved_gnconv:
+    name: "Final Improved Gnconv"
+    path: "Final Models/Improved Gnconv/model (2).onnx"
+    decoder_layers: 3
+    backbone: "ResNet-18"
+    category: "final"
+    description: "Final correctly trained Improved Gnconv model"
+
+  final_query_improvement:
+    name: "Final Query Improvement"
+    path: "Final Models/Query Improvement/model (2).onnx"
+    decoder_layers: 3
+    backbone: "ResNet-18"
+    category: "final"
+    description: "Final correctly trained Query Improvement model"
+
 # ============ Evaluation Settings ============
 evaluation:
   input_size: [640, 640]         # [height, width]

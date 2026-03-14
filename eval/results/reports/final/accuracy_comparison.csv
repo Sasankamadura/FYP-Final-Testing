@@ -1,6 +1,0 @@
-model_key,model_name,decoder_layers,mAP_50,mAP_50_95,mAP_75,mAP_small,mAP_medium,mAP_large,AR_100,delta_mAP_50
-final_baseline,Final Baseline,3,0.4232,0.2493,0.2472,0.1629,0.3531,0.4694,0.4005,0.0
-final_p2,Final P2,3,0.441,0.2661,0.2725,0.1798,0.3665,0.4897,0.4248,0.0178
-final_slim_p2,Final SLIM P2,3,0.4228,0.2517,0.2528,0.1688,0.3527,0.4599,0.4036,-0.0004
-final_gnconv_p2,Final GnConv + P2,3,0.4255,0.2527,0.2533,0.1699,0.3509,0.473,0.4064,0.0023
-final_gnconv_slim_p2,Final GnConv + SLIM P2,3,0.4128,0.2439,0.2451,0.1588,0.3434,0.4461,0.3951,-0.0104
