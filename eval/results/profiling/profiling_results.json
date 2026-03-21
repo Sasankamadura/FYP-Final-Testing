@@ -1,0 +1,210 @@
+{
+  "baseline_rtdetr_r18": {
+    "id": "baseline_rtdetr_r18",
+    "name": "RT-DETR R18 Baseline",
+    "total_params": 20096442,
+    "param_str": "20.10 M",
+    "gflops": 25.164,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "p2p3_fusion": {
+    "id": "p2p3_fusion",
+    "name": "P2-P3 Fusion",
+    "total_params": 24461432,
+    "param_str": "24.46 M",
+    "gflops": 52.007,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "query_imp": {
+    "id": "query_imp",
+    "name": "Query Improvement",
+    "total_params": 20084728,
+    "param_str": "20.08 M",
+    "gflops": 25.164,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "aware_loss": {
+    "id": "aware_loss",
+    "name": "Aware Loss Reweighting",
+    "total_params": 20084728,
+    "param_str": "20.08 M",
+    "gflops": 25.164,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv": {
+    "id": "gnconv",
+    "name": "gnConv",
+    "total_params": 18985720,
+    "param_str": "18.99 M",
+    "gflops": 22.911,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "p2_layer": {
+    "id": "p2_layer",
+    "name": "P2 Layer",
+    "total_params": 22213912,
+    "param_str": "22.21 M",
+    "gflops": 50.866,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "slim_p2_c": {
+    "id": "slim_p2_c",
+    "name": "SLIM P2 (Channel)",
+    "total_params": 21436317,
+    "param_str": "21.44 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "slim_p2_inc": {
+    "id": "slim_p2_inc",
+    "name": "SLIM P2 (Inception)",
+    "total_params": 32438823,
+    "param_str": "32.44 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_p2": {
+    "id": "gnconv_p2",
+    "name": "gnConv + P2 (6-dec)",
+    "total_params": 21939160,
+    "param_str": "21.94 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_p2_crr": {
+    "id": "gnconv_p2_crr",
+    "name": "gnConv + P2 (3-dec)",
+    "total_params": 20952072,
+    "param_str": "20.95 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_p2_repvgg": {
+    "id": "gnconv_p2_repvgg",
+    "name": "gnConv + P2 + RepVGG (6-dec)",
+    "total_params": 29495630,
+    "param_str": "29.50 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_p2_repvgg_crr": {
+    "id": "gnconv_p2_repvgg_crr",
+    "name": "gnConv + P2 + RepVGG (3-dec)",
+    "total_params": 21169983,
+    "param_str": "21.17 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_slim_p2_repvgg": {
+    "id": "gnconv_slim_p2_repvgg",
+    "name": "gnConv + SLIM-P2 + RepVGG (6-dec)",
+    "total_params": 27604266,
+    "param_str": "27.60 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_slim_p2_repvgg_crr": {
+    "id": "gnconv_slim_p2_repvgg_crr",
+    "name": "gnConv + SLIM-P2 + RepVGG (3-dec)",
+    "total_params": 20346801,
+    "param_str": "20.35 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_p2_integrated": {
+    "id": "gnconv_p2_integrated",
+    "name": "(gnConV+P2) Integrated",
+    "total_params": 22041630,
+    "param_str": "22.04 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "gnconv_slim_p2_integrated": {
+    "id": "gnconv_slim_p2_integrated",
+    "name": "(gnConv+SLIM-P2) Integrated",
+    "total_params": 21396150,
+    "param_str": "21.40 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "efficientnet_b2": {
+    "id": "efficientnet_b2",
+    "name": "EfficientNet-B2",
+    "total_params": 16499354,
+    "param_str": "16.50 M",
+    "gflops": 13.453,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "efficientnet_b2_p2": {
+    "id": "efficientnet_b2_p2",
+    "name": "EfficientNet-B2 + P2",
+    "total_params": 18618298,
+    "param_str": "18.62 M",
+    "gflops": 38.894,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_baseline": {
+    "id": "final_baseline",
+    "name": "Final Baseline",
+    "total_params": 20084728,
+    "param_str": "20.08 M",
+    "gflops": 25.164,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_p2": {
+    "id": "final_p2",
+    "name": "Final P2",
+    "total_params": 22259499,
+    "param_str": "22.26 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_slim_p2": {
+    "id": "final_slim_p2",
+    "name": "Final SLIM P2",
+    "total_params": 21436317,
+    "param_str": "21.44 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_gnconv_p2": {
+    "id": "final_gnconv_p2",
+    "name": "Final GnConv + P2",
+    "total_params": 22041630,
+    "param_str": "22.04 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_gnconv_slim_p2": {
+    "id": "final_gnconv_slim_p2",
+    "name": "Final GnConv + SLIM P2",
+    "total_params": 21396150,
+    "param_str": "21.40 M",
+    "gflops": 45.101,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_efficientnet_gnconv_p2": {
+    "id": "final_efficientnet_gnconv_p2",
+    "name": "Final Efficientnet-B2 + GnConv + P2",
+    "total_params": 20058874,
+    "param_str": "20.06 M",
+    "gflops": 32.93,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_improved_gnconv": {
+    "id": "final_improved_gnconv",
+    "name": "Final Improved Gnconv",
+    "total_params": 19211416,
+    "param_str": "19.21 M",
+    "gflops": 34.458,
+    "timestamp": "2026-03-21 13:01:31"
+  },
+  "final_query_improvement": {
+    "id": "final_query_improvement",
+    "name": "Final Query Improvement",
+    "total_params": 21855736,
+    "param_str": "21.86 M",
+    "gflops": 25.164,
+    "timestamp": "2026-03-21 13:01:31"
+  }
+}
