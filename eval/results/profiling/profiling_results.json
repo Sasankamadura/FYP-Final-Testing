@@ -52,7 +52,7 @@
     "name": "SLIM P2 (Channel)",
     "total_params": 21436317,
     "param_str": "21.44 M",
-    "gflops": 45.101,
+    "gflops": 36.076,
     "timestamp": "2026-03-21 13:01:31"
   },
   "slim_p2_inc": {
@@ -60,7 +60,7 @@
     "name": "SLIM P2 (Inception)",
     "total_params": 32438823,
     "param_str": "32.44 M",
-    "gflops": 45.101,
+    "gflops": 68.589,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_p2": {
@@ -68,7 +68,7 @@
     "name": "gnConv + P2 (6-dec)",
     "total_params": 21939160,
     "param_str": "21.94 M",
-    "gflops": 45.101,
+    "gflops": 69.77,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_p2_crr": {
@@ -76,7 +76,7 @@
     "name": "gnConv + P2 (3-dec)",
     "total_params": 20952072,
     "param_str": "20.95 M",
-    "gflops": 45.101,
+    "gflops": 41.406,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_p2_repvgg": {
@@ -84,7 +84,7 @@
     "name": "gnConv + P2 + RepVGG (6-dec)",
     "total_params": 29495630,
     "param_str": "29.50 M",
-    "gflops": 45.101,
+    "gflops": 94.750,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_p2_repvgg_crr": {
@@ -92,7 +92,7 @@
     "name": "gnConv + P2 + RepVGG (3-dec)",
     "total_params": 21169983,
     "param_str": "21.17 M",
-    "gflops": 45.101,
+    "gflops": 47.172,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_slim_p2_repvgg": {
@@ -100,7 +100,7 @@
     "name": "gnConv + SLIM-P2 + RepVGG (6-dec)",
     "total_params": 27604266,
     "param_str": "27.60 M",
-    "gflops": 45.101,
+    "gflops": 52.587,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_slim_p2_repvgg_crr": {
@@ -108,7 +108,7 @@
     "name": "gnConv + SLIM-P2 + RepVGG (3-dec)",
     "total_params": 20346801,
     "param_str": "20.35 M",
-    "gflops": 45.101,
+    "gflops": 32.382,
     "timestamp": "2026-03-21 13:01:31"
   },
   "gnconv_p2_integrated": {
@@ -124,7 +124,7 @@
     "name": "(gnConv+SLIM-P2) Integrated",
     "total_params": 21396150,
     "param_str": "21.40 M",
-    "gflops": 45.101,
+    "gflops": 34.874,
     "timestamp": "2026-03-21 13:01:31"
   },
   "efficientnet_b2": {
@@ -156,7 +156,7 @@
     "name": "Final P2",
     "total_params": 22259499,
     "param_str": "22.26 M",
-    "gflops": 45.101,
+    "gflops": 50.866,
     "timestamp": "2026-03-21 13:01:31"
   },
   "final_slim_p2": {
@@ -164,7 +164,7 @@
     "name": "Final SLIM P2",
     "total_params": 21436317,
     "param_str": "21.44 M",
-    "gflops": 45.101,
+    "gflops": 36.076,
     "timestamp": "2026-03-21 13:01:31"
   },
   "final_gnconv_p2": {
@@ -180,7 +180,7 @@
     "name": "Final GnConv + SLIM P2",
     "total_params": 21396150,
     "param_str": "21.40 M",
-    "gflops": 45.101,
+    "gflops": 34.874,
     "timestamp": "2026-03-21 13:01:31"
   },
   "final_efficientnet_gnconv_p2": {
