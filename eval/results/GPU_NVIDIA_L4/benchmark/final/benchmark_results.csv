@@ -1,0 +1,9 @@
+model_key,name,decoder_layers,backbone,mean_latency_ms,std_latency_ms,min_latency_ms,max_latency_ms,median_latency_ms,p95_latency_ms,p99_latency_ms,fps,gpu_memory_mb,warmup_iterations,measure_iterations,model_size_mb,total_params,param_str,providers
+final_baseline,Final Baseline,3,ResNet-18,7.691,0.157,7.038,7.97,7.711,7.865,7.93,130.02,480,50,200,76.74,19880804,19.88M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_p2,Final P2,3,ResNet-18,17.515,0.252,16.29,18.379,17.521,17.947,18.101,57.09,734,50,200,85.0,21907332,21.91M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_slim_p2,Final SLIM P2,3,ResNet-18,15.451,0.206,14.09,15.855,15.445,15.767,15.829,64.72,744,50,200,81.85,21083332,21.08M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_gnconv_p2,Final GnConv + P2,3,ResNet-18,31.21,0.452,27.547,32.558,31.196,31.835,32.072,32.04,740,50,200,84.17,21682884,21.68M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_gnconv_slim_p2,Final GnConv + SLIM P2,3,ResNet-18,22.337,0.444,20.32,23.317,22.332,22.963,23.196,44.77,734,50,200,81.7,21036772,21.04M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_efficientnet_gnconv_p2,Final Efficientnet-B2 + GnConv + P2,3,EfficientNet-B2,33.518,0.448,30.327,34.97,33.472,34.172,34.513,29.83,734,50,200,68.47,17546606,17.55M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_improved_gnconv,Final Improved Gnconv,3,ResNet-18,27.684,0.355,25.021,28.755,27.686,28.121,28.256,36.12,734,50,200,74.87,19199172,19.20M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_query_improvement,Final Query Improvement,3,ResNet-18,8.188,0.157,7.468,8.488,8.193,8.401,8.43,122.13,478,50,200,76.74,19880804,19.88M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
