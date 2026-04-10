@@ -181,10 +181,12 @@ def main():
     # ---- Select Models ----
     models = config["models"]
     if args.model:
-        if args.model not in models:
-            print(f"\nModel '{args.model}' not found. Available: {list(models.keys())}")
-            return
-        models = {args.model: models[args.model]}
+        selected_keys = [k.strip() for k in args.model.split(',')]
+        for k in selected_keys:
+            if k not in models:
+                print(f"\nModel '{k}' not found. Available: {list(models.keys())}")
+                return
+        models = {k: models[k] for k in selected_keys}
 
     # ---- Benchmark Each Model ----
     all_results_exp = OrderedDict()
