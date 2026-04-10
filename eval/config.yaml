@@ -260,6 +260,22 @@ models:
     category: "final"
     description: "Final correctly trained Query Improvement model"
 
+  final_pure_coordgn:
+    name: "Final Pure Coordgn"
+    path: "Final Models/Pure coordgn/model (2).onnx"
+    decoder_layers: 3
+    backbone: "ResNet-18"
+    category: "final"
+    description: "Final correctly trained Pure Coordgn model"
+
+  final_pure_spd:
+    name: "Final Pure SPD"
+    path: "Final Models/Pure SPD/model (2).onnx"
+    decoder_layers: 3
+    backbone: "ResNet-18"
+    category: "final"
+    description: "Final correctly trained Pure SPD model"
+
 # ============ Evaluation Settings ============
 evaluation:
   input_size: [640, 640]         # [height, width]
