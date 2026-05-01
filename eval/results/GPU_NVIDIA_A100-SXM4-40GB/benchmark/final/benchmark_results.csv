@@ -1,9 +1,11 @@
 model_key,name,decoder_layers,backbone,mean_latency_ms,std_latency_ms,min_latency_ms,max_latency_ms,median_latency_ms,p95_latency_ms,p99_latency_ms,fps,gpu_memory_mb,warmup_iterations,measure_iterations,model_size_mb,total_params,param_str,providers
 final_baseline,Final Baseline,3,ResNet-18,6.084,0.126,6.01,7.289,6.063,6.147,6.805,164.36,722,50,200,76.74,19880804,19.88M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
-final_p2,Final P2,3,ResNet-18,8.775,0.03,8.744,9.116,8.77,8.799,8.85,113.96,972,50,200,85.0,21907332,21.91M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_p2,Final P2,3,ResNet-18,8.775,0.03,8.744,9.116,8.77,8.799,8.85,113.96,972,50,200,85,21907332,21.91M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_slim_p2,Final SLIM P2,3,ResNet-18,8.194,0.019,8.155,8.351,8.192,8.221,8.228,122.03,974,50,200,81.85,21083332,21.08M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_gnconv_p2,Final GnConv + P2,3,ResNet-18,10.916,0.026,10.87,11.136,10.913,10.948,10.987,91.61,976,50,200,84.17,21682884,21.68M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_gnconv_slim_p2,Final GnConv + SLIM P2,3,ResNet-18,9.399,0.059,9.328,9.924,9.386,9.46,9.519,106.39,980,50,200,81.7,21036772,21.04M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_efficientnet_gnconv_p2,Final Efficientnet-B2 + GnConv + P2,3,EfficientNet-B2,13.324,0.023,13.275,13.497,13.322,13.358,13.38,75.05,972,50,200,68.47,17546606,17.55M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_improved_gnconv,Final Improved Gnconv,3,ResNet-18,11.502,0.341,11.363,13.832,11.422,11.748,13.486,86.94,972,50,200,74.87,19199172,19.20M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
 final_query_improvement,Final Query Improvement,3,ResNet-18,6.242,0.05,6.2,6.815,6.232,6.287,6.34,160.21,716,50,200,76.74,19880804,19.88M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_pure_coordgn,Final Pure Coordgn,3,ResNet-18,11.83,0.293,11.495,14.13,11.781,12.258,12.74,84.53,974,50,200,78.6,20182212,20.18M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
+final_pure_spd,Final Pure SPD,3,ResNet-18,9.034,0.326,8.789,10.743,8.945,9.603,10.49,110.7,972,50,200,81.27,20924292,20.92M,"['CUDAExecutionProvider', 'CPUExecutionProvider']"
